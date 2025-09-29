@@ -1,5 +1,4 @@
 
-import HorizontalScrollText from './HorizontalScrollText';
 
 const Hero = () => {
   return (

@@ -1,5 +1,5 @@
 
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const COLORS = ["#ff4300"];
 const TRAIL_COUNT = 15;

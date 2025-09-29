@@ -3,7 +3,6 @@ import HorizontalScrollCarousel from './components/HorizontalScrollCarousel.tsx'
 
 import About from './components/About';
 import Contact from './components/Contact';
-import ScrollIndicator from './components/ScrollIndicator';
   
 import HorizontalScrollText from './components/HorizontalScrollText';
 import MouseTrail from './components/mouse.tsx';
