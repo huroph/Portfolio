@@ -47,12 +47,12 @@ const HorizontalScrollText = () => {
             className="h-[250vh] bg-[#faf6e7] text-[#ff4300]"
         >
 
-            <div className="sticky top-2/5 h-screen items-center overflow-hidden">
+            <div className="sticky top-2/5  items-center overflow-hidden ">
                 <motion.p
                     style={{ skewX, x }}
                     className="origin-bottom-left flex whitespace-nowrap items-end font-black uppercase  text-8xl md:leading-[0.85] pl-10"
                 >
-                    <div >“There is beauty when something works and it works intuitively.”</div>
+                    <div >“There is beauty when something works intuitively.”</div>
                     <div className="text-[2vw] italic font-light" >Jonny Ive</div>
                 </motion.p>
 

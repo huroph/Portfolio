@@ -39,23 +39,31 @@ const HorizontalScrollCarousel = () => {
 };
 
 const Card = ({ card }: { card: { id: number; img: string; alt: string } }) => {
-    const isEOLE = card.alt === "EOLE";
-    return (
-      <div
-        className="group relative  flex items-center justify-center flex-shrink-0"
-      >
-        <img
-          src={card.img}
-          alt={card.alt}
-          className={
-            isEOLE
-              ? "max-w-[1000px] w-auto h-auto mx-auto "
-              : "w-[320px] h-auto mx-30"
-          }
-          style={isEOLE ? { objectFit: "contain" } : {}}
-        />
+  const isEOLE = card.alt === "EOLE";
+  return (
+    <div
+      className="group relative flex items-center justify-center  flex-shrink-0 overflow-hidden "
+    >
+      <img
+        src={card.img}
+        alt={card.alt}
+        className={
+          
+          (isEOLE
+            ? "max-w-[1000px] w-auto h-auto mx-auto "
+            : "w-[250px] h-auto mx-30") +
+          " transition duration-300  group-hover:scale-105"
+        }
+        style={isEOLE ? { objectFit: "contain" } : {}}
+      />
+      {/* Bouton et titre centrés au hover */}
+      <div className="absolute inset-0 flex items-end pb-12 justify-center pointer-events-none">
+        <div className=" transition duration-300 flex py-4 rounded-[50px] rounded-tr-[50px] flex-col bg-[#faf6e7] w-1/2 items-center pointer-events-auto">
+          <span className="text-[#ff4300] text-xl font-bold mb-4 ">{card.alt}</span>
+        </div>
       </div>
-    );
+    </div>
+  );
 };
 
 export default HorizontalScrollCarousel;
