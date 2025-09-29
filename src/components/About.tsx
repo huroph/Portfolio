@@ -1,3 +1,4 @@
+import profil from '../assets/profil.png';
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useRef } from "react";
 
@@ -58,7 +59,7 @@ const About = () => {
               transition={getTransition(1)}
             >
               <motion.img
-                src="/src/assets/profil.png"
+                src={profil}
                 alt="Portrait"
                 className="rw-[320px] "
                 initial={{ opacity: 0, scale: 0.8 }}

@@ -1,3 +1,6 @@
+import trueTourism from '../assets/trueTourism.png';
+import BambouTech from '../assets/BambouTech.png';
+import EOLE from '../assets/EOLE.png';
 import { motion, useTransform, useScroll } from "framer-motion";
 import { useRef } from "react";
 
@@ -12,9 +15,9 @@ const HorizontalScrollCarousel = () => {
 
   // Définir les cartes projets
   const cards = [
-    { id: 1, img: "/src/assets/trueTourism.png", alt: "TrueTourism" },
-    { id: 2, img: "/src/assets/BambouTech.png", alt: "BambouTech" },
-    { id: 3, img: "/src/assets/EOLE.png", alt: "EOLE" },
+    { id: 1, img: trueTourism, alt: "TrueTourism" },
+    { id: 2, img: BambouTech, alt: "BambouTech" },
+    { id: 3, img: EOLE, alt: "EOLE" },
   ];
 
   return (
