@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'Humane-VF';
+  src: url('/Humane-VF.ttf') format('truetype');
+  font-weight: 100 ;
+
+
+}
+
+.humane-title {
+  font-family: 'Humane-VF', sans-serif !important;
+  
+  line-height: 1;
+
+}

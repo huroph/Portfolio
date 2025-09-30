@@ -102,17 +102,22 @@ const About = () => {
                 custom={4}
                 transition={getTransition(4)}
               >
+               
                 <motion.div
-                  className="text-[#ff4300] text-6xl font-bold text-center"
+                  className="text-[#ff4300] text-6xl font-bold text-center  flex flex-col items-start justify-center" 
                   initial="hidden"
                   animate="visible"
                   exit="exit"
                   variants={variants}
-                  custom={5}
-                  transition={getTransition(5)}
-                >2<br /><span className="text-xl font-normal">Startup</span></motion.div>
+                  custom={6}
+                  transition={getTransition(6)}
+                >
+                2
+                <span className="text-3xl font-normal ">Startup</span>
+                
+                </motion.div>
                 <motion.div
-                  className="text-[#ff4300] text-6xl font-bold text-center border flex flex-col items-start justify-center" 
+                  className="text-[#ff4300] text-6xl font-bold text-center  flex flex-col items-start justify-center" 
                   initial="hidden"
                   animate="visible"
                   exit="exit"
@@ -121,7 +126,7 @@ const About = () => {
                   transition={getTransition(6)}
                 >
                 +10
-                 <span className="text-3xl font-normal ">Projects</span>
+                <span className="text-3xl font-normal ">Projects</span>
                 
                 </motion.div>
                

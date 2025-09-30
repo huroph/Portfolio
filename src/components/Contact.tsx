@@ -14,9 +14,10 @@ const Contact = () => {
   }, []);
 
   return (
-    <section className="w-full h-screen flex flex-col items-center justify-center py-24 bg-[#faf6e7]">
-      <div className="w-full max-w-5xl px-4 flex flex-col items-center">
-        <h2 className="text-7xl font-bold text-[#ff4300] text-center mb-4">CONTACT</h2>
+    <section className="w-full h-screen flex flex-col items-center  pb-24 bg-[#ff4300] ">
+      <div className="w-full h-24 bg-[#faf6e7]"></div>
+      <div className="w-full max-w-5xl px-4 pt-8 flex flex-col items-center">
+        <h2 className="text-7xl font-bold text-white text-center mb-4">CONTACT</h2>
         <p className="text-xl text-[#ff9a6c] text-center mb-2">Ready to embark on a new digital journey together?</p>
         <p className="text-xl text-[#ff9a6c] text-center mb-12">Let's create something extraordinary.</p>
         <div className="grid grid-cols-1  md:grid-cols-2 gap-12 w-full pl-30">
@@ -39,15 +40,15 @@ const Contact = () => {
           <div className="flex flex-col gap-8   justify-between">
             <div>
               <div className="text-[#ff9a6c] mb-1">EMAIL</div>
-              <div className="text-[#ff4300] text-lg font-medium">hugo.nahmias@icloud.com</div>
+              <div className="text-white text-lg font-medium">hugo.nahmias@icloud.com</div>
             </div>
             <div>
               <div className="text-[#ff9a6c] mb-1">LOCATION</div>
-              <div className="text-[#ff4300] text-lg font-medium">Paris , France</div>
+              <div className="text-white text-lg font-medium">Paris , France</div>
             </div>
             <div>
               <div className="text-[#ff9a6c] mb-1">LOCAL TIME</div>
-              <div className="text-[#ff4300] text-lg font-medium">{time}</div>
+              <div className="text-white text-lg font-medium">{time}</div>
             </div>
             <div>
               <div className="text-[#ff9a6c] mb-1">CONNECT</div>
