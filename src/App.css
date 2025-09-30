@@ -7,7 +7,7 @@
 }
 #section10 a span {
   position: fixed;
- bottom: 5%;
+  bottom: 5%;
   right: 5%;
   width: 30px;
   height: 50px;
@@ -15,6 +15,22 @@
   border: 2px solid #ff4400;
   border-radius: 50px;
   box-sizing: border-box;
+}
+
+#section10 a span::after {
+  content: 'SCROLL';
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ff4400;
+  font-size: 0.7rem;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  background: none;
+  pointer-events: none;
 }
 #section10 a span::before {
   position: absolute;

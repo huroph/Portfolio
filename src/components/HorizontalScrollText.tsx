@@ -73,7 +73,7 @@ const HorizontalScrollText = () => {
 
                             <div className="flex justify-center mt-20">
                                 <motion.button
-                                    className="relative border-2 border-[#ff4300] text-[#ff4300] py-2 px-4 rounded-[50px] overflow-hidden z-10"
+                                    className="relative border-2 border-[#ff4300] text-[#ff4300] py-2 px-4 rounded-[50px] overflow-hidden z-10 cursor-pointer"
                                     initial="rest"
                                     whileHover="hover"
                                     animate="rest"
@@ -81,6 +81,12 @@ const HorizontalScrollText = () => {
                                     exit={{ opacity: 0, y: -40 }}
                                     transition={{ duration: 0.5, ease: [0.4, 0.8, 0.2, 1] }}
                                     style={{ zIndex: 10 }}
+                                    onClick={() => {
+                                        const contact = document.getElementById('contact');
+                                        if (contact) {
+                                            contact.scrollIntoView({ behavior: 'smooth' });
+                                        }
+                                    }}
                                 >
                                     <motion.div
                                         className="absolute top-0 left-0 w-full h-full bg-[#ff4300]"
@@ -88,7 +94,6 @@ const HorizontalScrollText = () => {
                                             rest: {
                                                 y: "100%",
                                             },
-
                                             hover: {
                                                 y: "0%",
                                                 rotateZ: "10deg",
@@ -100,7 +105,6 @@ const HorizontalScrollText = () => {
                                             ease: [0.34, 1.56, 0.64, 1]
                                         }}
                                     />
-
                                     <motion.span
                                         className="relative z-10 text-2xl"
                                         variants={{
@@ -108,7 +112,7 @@ const HorizontalScrollText = () => {
                                             hover: { color: "#ffffff" }
                                         }}
                                     >
-                                        Contact Me !
+                                        Parlons de votre projet 🚀 !
                                     </motion.span>
                                 </motion.button>
                             </div>

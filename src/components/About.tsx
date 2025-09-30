@@ -29,23 +29,8 @@ const About = () => {
 
   return (
     <section ref={ref} className="w-full h-screen flex flex-col  py-24 bg-[#faf6e7] ">
-      <div className="flex-1   flex flex-col md:flex-row items-center  gap-12 md:gap-0 relative">
-        {/* Titre vertical */}
-        <AnimatePresence>
-          {inView && (
-            <motion.div
-              className="absolute left-0 top-1/2 -translate-y-1/2 hidden md:block"
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              variants={variants}
-              custom={0}
-              transition={getTransition(0)}
-            >
-              <span className="text-[5vw] font-bold text-[#ff4300] tracking-tight" style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}>ABOUT</span>
-            </motion.div>
-          )}
-        </AnimatePresence>
+      <div className="flex-1   flex  items-center justify-end gap-12  relative">
+
         {/* Image */}
         <AnimatePresence>
           {inView && (
@@ -71,21 +56,21 @@ const About = () => {
         </AnimatePresence>
         {/* Contenu */}
 
- <AnimatePresence>
-   <motion.div
-          className="absolute top-0 left-1/2  text-center text-[12vw] font-bold text-[#ffead6] opacity-60 select-none pointer-events-none md:block hidden"
-          style={{ zIndex: 0 }}
-          initial={{ opacity: 0, scale: 0, x: '-50%', y: 0 }}
-          animate={{ opacity: 1, scale: 1, x: '-50%', y: 0, transition: getTransition(3) }}
-          exit={{ opacity: 0, scale: 0, x: '-50%', y: 0, transition: { duration: 0.5 } }}
-        >ABOUT</motion.div>
- </AnimatePresence>
-       
+        <AnimatePresence>
+          <motion.div
+            className="absolute top-0 left-1/2  text-right pr-10 text-[12vw] font-bold text-[#ffead6] opacity-60 select-none pointer-events-none md:block  w-full hidden"
+            style={{ zIndex: 0 }}
+            initial={{ opacity: 0, scale: 0, x: '-50%', y: 0 }}
+            animate={{ opacity: 1, scale: 1, x: '-50%', y: 0, transition: getTransition(3) }}
+            exit={{ opacity: 0, scale: 0, x: '-50%', y: 0, transition: { duration: 0.5 } }}
+          >A PROPOS</motion.div>
+        </AnimatePresence>
+
 
         <AnimatePresence>
           {inView && (
             <motion.div
-              className="flex-1 flex pl-20 flex-col items-center md:items-start justify-center"
+              className=" w-full flex-1 flex   flex-col "
               initial="hidden"
               animate="visible"
               exit="exit"
@@ -102,9 +87,9 @@ const About = () => {
                 custom={4}
                 transition={getTransition(4)}
               >
-               
+
                 <motion.div
-                  className="text-[#ff4300] text-6xl font-bold text-center  flex flex-col items-start justify-center" 
+                  className="text-[#ff4300] text-6xl font-bold text-center  flex flex-col items-start justify-center"
                   initial="hidden"
                   animate="visible"
                   exit="exit"
@@ -112,12 +97,12 @@ const About = () => {
                   custom={6}
                   transition={getTransition(6)}
                 >
-                2
-                <span className="text-3xl font-normal ">Startup</span>
-                
+                  2
+                  <span className="text-3xl font-normal ">Startup</span>
+
                 </motion.div>
                 <motion.div
-                  className="text-[#ff4300] text-6xl font-bold text-center  flex flex-col items-start justify-center" 
+                  className="text-[#ff4300] text-6xl font-bold text-center  flex flex-col items-start justify-center"
                   initial="hidden"
                   animate="visible"
                   exit="exit"
@@ -125,15 +110,15 @@ const About = () => {
                   custom={6}
                   transition={getTransition(6)}
                 >
-                +10
-                <span className="text-3xl font-normal ">Projects</span>
-                
+                  +10
+                  <span className="text-3xl font-normal ">Projects</span>
+
                 </motion.div>
-               
+
 
               </motion.div>
-              
-             
+
+
               <motion.p
                 className="text-[#ff9a6c] text-base max-w-xl mb-6 z-10"
                 initial="hidden"

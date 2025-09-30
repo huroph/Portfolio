@@ -18,22 +18,23 @@ const Contact = () => {
       <div className="w-full h-24 bg-[#faf6e7]"></div>
       <div className="w-full max-w-5xl px-4 pt-8 flex flex-col items-center">
         <h2 className="text-7xl font-bold text-white text-center mb-4">CONTACT</h2>
-        <p className="text-xl text-[#ff9a6c] text-center mb-2">Ready to embark on a new digital journey together?</p>
-        <p className="text-xl text-[#ff9a6c] text-center mb-12">Let's create something extraordinary.</p>
+        <p className="text-xl text-[#ff9a6c] text-center mb-2">Vos idées méritent mieux qu’un simple écran.</p>
+        <p className="text-xl text-[#ff9a6c] text-center mb-12">Faisons-en une expérience qui marquera les esprits.</p>
+
         <div className="grid grid-cols-1  md:grid-cols-2 gap-12 w-full pl-30">
           {/* Formulaire */}
-          <form className="flex flex-col gap-8">
+          <form className="flex flex-col gap-8 pointer-events-auto">
             <div>
               <label className="block text-[#ff9a6c] mb-2">NAME</label>
-              <input className="w-full bg-transparent border-b border-[#ff9a6c] outline-none py-2 text-lg" type="text" placeholder="" />
+              <input className="w-full bg-transparent border-b border-[#ff9a6c] outline-none py-2 text-lg text-white" type="text" placeholder="" />
             </div>
             <div>
               <label className="block text-[#ff9a6c] mb-2">EMAIL</label>
-              <input className="w-full bg-transparent border-b border-[#ff9a6c] outline-none py-2 text-lg" type="email" placeholder="" />
+              <input className="w-full bg-transparent border-b border-[#ff9a6c] outline-none py-2 text-lg text-white" type="email" placeholder="" />
             </div>
             <div>
               <label className="block text-[#ff9a6c] mb-2">MESSAGE</label>
-              <textarea className="w-full bg-transparent border-b border-[#ff9a6c] outline-none py-2 text-lg" rows={3} placeholder="" />
+              <textarea className="w-full bg-transparent border-b border-[#ff9a6c] outline-none py-2 text-lg text-white" rows={3} placeholder="" />
             </div>
           </form>
           {/* Infos */}
