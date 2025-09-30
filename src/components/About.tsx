@@ -112,24 +112,23 @@ const About = () => {
                   transition={getTransition(5)}
                 >2<br /><span className="text-xl font-normal">Startup</span></motion.div>
                 <motion.div
-                  className="text-[#ff4300] text-6xl font-bold text-center"
+                  className="text-[#ff4300] text-6xl font-bold text-center border flex flex-col items-start justify-center" 
                   initial="hidden"
                   animate="visible"
                   exit="exit"
                   variants={variants}
                   custom={6}
                   transition={getTransition(6)}
-                >+10<br /><span className="text-xl font-normal">Projects</span></motion.div>
+                >
+                +10
+                 <span className="text-3xl font-normal ">Projects</span>
+                
+                </motion.div>
+               
+
               </motion.div>
-              <motion.div
-                className="text-[#ff4300] text-lg font-bold mb-2 z-10"
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                variants={variants}
-                custom={7}
-                transition={getTransition(7)}
-              >UI/UX designer</motion.div>
+              
+             
               <motion.p
                 className="text-[#ff9a6c] text-base max-w-xl mb-6 z-10"
                 initial="hidden"
@@ -139,7 +138,7 @@ const About = () => {
                 custom={8}
                 transition={getTransition(8)}
               >
-                avec un vrai passé d'ingénieur et d'entrepreneur. J'ai cofondé deux <span className="font-bold text-[#ff4300]">startups</span> et travaillé sur un CRM à grande échelle chez Proman. Mon fil rouge : <span className="font-bold text-[#ff4300]">transformer la complexité en expériences claires et intuitives</span>.<br />
+                <span className="font-bold text-[#ff4300]">UI/UX designer </span>avec un vrai passé d'ingénieur et d'entrepreneur. J'ai cofondé deux <span className="font-bold text-[#ff4300]">startups</span> et travaillé sur un CRM à grande échelle chez Proman. Mon fil rouge : <span className="font-bold text-[#ff4300]">transformer la complexité en expériences claires et intuitives</span>.<br />
                 J'aime concevoir des produits utiles, esthétiques, et coordonner les équipes pour qu'ils voient le jour dans les temps.
               </motion.p>
               <motion.div

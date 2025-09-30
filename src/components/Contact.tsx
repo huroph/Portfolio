@@ -19,7 +19,7 @@ const Contact = () => {
         <h2 className="text-7xl font-bold text-[#ff4300] text-center mb-4">CONTACT</h2>
         <p className="text-xl text-[#ff9a6c] text-center mb-2">Ready to embark on a new digital journey together?</p>
         <p className="text-xl text-[#ff9a6c] text-center mb-12">Let's create something extraordinary.</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full">
+        <div className="grid grid-cols-1  md:grid-cols-2 gap-12 w-full pl-30">
           {/* Formulaire */}
           <form className="flex flex-col gap-8">
             <div>
@@ -36,7 +36,7 @@ const Contact = () => {
             </div>
           </form>
           {/* Infos */}
-          <div className="flex flex-col gap-8 justify-between">
+          <div className="flex flex-col gap-8   justify-between">
             <div>
               <div className="text-[#ff9a6c] mb-1">EMAIL</div>
               <div className="text-[#ff4300] text-lg font-medium">hugo.nahmias@icloud.com</div>
