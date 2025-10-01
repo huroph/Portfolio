@@ -1,11 +1,10 @@
 
 import { useParams } from 'react-router-dom';
 import '../humane-font.css';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { projects } from '../data/projects';
 import Contact from './Contact';
-import HorizontalScrollCarousel from './HorizontalScrollCarousel';
 
 // Imports dynamiques des mockups pour tous les projets
 import trueTourismMockup1 from '../assets/truetourism/Mockup_1.png';
@@ -20,43 +19,11 @@ import MockupBambouTech1 from './mockup/bamboutech/Mockup_1';
 import MockupBambouTech2 from './mockup/bamboutech/Mockup_2';
 
 const ProjectPage = () => {
-    const [contactZIndex, setContactZIndex] = useState(0);
-    const [contactPointerEvents, setContactPointerEvents] = useState('none');
+ 
     const { i18n } = useTranslation();
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const contactAnchor = document.getElementById('contact');
-            if (!contactAnchor) return;
-            const rect = contactAnchor.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                setContactZIndex(20);
-                setContactPointerEvents('auto');
-            } else {
-                setContactZIndex(0);
-                setContactPointerEvents('none');
-            }
-        };
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll();
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const contactAnchor = document.getElementById('contact');
-            if (!contactAnchor) return;
-            const rect = contactAnchor.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                setContactZIndex(20);
-            } else {
-                setContactZIndex(0);
-            }
-        };
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll();
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
     const { project } = useParams();
     const titleRef = useRef<HTMLHeadingElement>(null);
 
