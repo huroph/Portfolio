@@ -1,6 +1,7 @@
 import profil from '../assets/profil.png';
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useRef } from "react";
+import { useTranslation } from 'react-i18next';
 
 const variants = {
   hidden: { opacity: 0, y: 60 },
@@ -26,9 +27,10 @@ const getTransition = (i: number) => ({
 const About = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { amount: 0.3, once: false });
+  const { t } = useTranslation();
 
   return (
-    <section ref={ref} className="w-full h-screen flex flex-col  py-24 bg-[#faf6e7] ">
+  <section ref={ref} className="w-full h-screen flex flex-col  py-24 bg-[#faf6e7] ">
       <div className="flex-1   flex  items-center justify-end gap-12  relative">
 
         {/* Image */}
@@ -63,7 +65,7 @@ const About = () => {
             initial={{ opacity: 0, scale: 0, x: '-50%', y: 0 }}
             animate={{ opacity: 1, scale: 1, x: '-50%', y: 0, transition: getTransition(3) }}
             exit={{ opacity: 0, scale: 0, x: '-50%', y: 0, transition: { duration: 0.5 } }}
-          >A PROPOS</motion.div>
+          >{t('about_title')}</motion.div>
         </AnimatePresence>
 
 
@@ -98,7 +100,7 @@ const About = () => {
                   transition={getTransition(6)}
                 >
                   2
-                  <span className="text-3xl font-normal ">Startup</span>
+                  <span className="text-3xl font-normal ">{t('about_startup')}</span>
 
                 </motion.div>
                 <motion.div
@@ -111,7 +113,7 @@ const About = () => {
                   transition={getTransition(6)}
                 >
                   +10
-                  <span className="text-3xl font-normal ">Projects</span>
+                  <span className="text-3xl font-normal ">{t('about_projects')}</span>
 
                 </motion.div>
 
@@ -128,8 +130,7 @@ const About = () => {
                 custom={8}
                 transition={getTransition(8)}
               >
-                <span className="font-bold text-[#ff4300]">UI/UX designer </span>avec un vrai passé d'ingénieur et d'entrepreneur. J'ai cofondé deux <span className="font-bold text-[#ff4300]">startups</span> et travaillé sur un CRM à grande échelle chez Proman. Mon fil rouge : <span className="font-bold text-[#ff4300]">transformer la complexité en expériences claires et intuitives</span>.<br />
-                J'aime concevoir des produits utiles, esthétiques, et coordonner les équipes pour qu'ils voient le jour dans les temps.
+                {t('about_description')}
               </motion.p>
               <motion.div
                 className="italic text-[#ff4300] text-center text-lg z-10"
@@ -140,7 +141,7 @@ const About = () => {
                 custom={9}
                 transition={getTransition(9)}
               >
-                “Transforme la complexité en expériences intuitives et esthétiques”
+                {t('about_quote')}
               </motion.div>
             </motion.div>
           )}

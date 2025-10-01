@@ -7,8 +7,10 @@ import {
     AnimatePresence,
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from 'react-i18next';
 
 const HorizontalScrollText = () => {
+    const { t } = useTranslation();
     const targetRef = useRef(null);
 
     const { scrollYProgress } = useScroll({
@@ -68,7 +70,7 @@ const HorizontalScrollText = () => {
                                 transition={{ duration: 0.5, ease: [0.4, 0.8, 0.2, 1] }}
                                 className="text-[2vw]  text-[#ff4300] text-center leading-tight mb-8 mt-10 font-extralight"
                             >
-                                Je suis Hugo Nahmias , Designer UI/UX
+                                {t('scroll_intro')}
                             </motion.p>
 
                             <div className="flex justify-center mt-20">
@@ -112,7 +114,7 @@ const HorizontalScrollText = () => {
                                             hover: { color: "#ffffff" }
                                         }}
                                     >
-                                        Parlons de votre projet 🚀 !
+                                        {t('scroll_btn')}
                                     </motion.span>
                                 </motion.button>
                             </div>

@@ -1,15 +1,17 @@
 import Logo from '../assets/logo.svg';
+import { useTranslation } from 'react-i18next';
 
 const navLinks = [
-	{ href: '#about', label: 'About' },
-	{ href: '#projects', label: 'Project' },
-	{ href: '#contact', label: 'Contact' },
+	{ href: '#about', label: 'about' },
+	{ href: '#projects', label: 'project' },
+	{ href: '#contact', label: 'contact' },
 ];
 
 
 import { useEffect, useRef, useState } from "react";
 
 const Navbar = () => {
+	const { t } = useTranslation();
 	const [show, setShow] = useState(true);
 	const lastScroll = useRef(0);
 
@@ -42,7 +44,7 @@ const Navbar = () => {
 							href={link.href}
 							className="text-[#ff4300] text-xl font-light hover:underline transition"
 						>
-							{link.label}
+							{t(link.label)}
 						</a>
 					</li>
 				))}

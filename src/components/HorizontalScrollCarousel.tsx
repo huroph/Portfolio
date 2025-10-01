@@ -4,6 +4,7 @@ import EOLE from '../assets/EOLE.png';
 import { motion, useTransform, useScroll } from "framer-motion";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { t } from 'i18next';
 
 
 const HorizontalScrollCarousel = () => {
@@ -26,7 +27,7 @@ const HorizontalScrollCarousel = () => {
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         <div className="absolute h-screen w-full flex items-center justify-center">
           <h1 className="text-[20vw] font-bold text-[#ff4300] text-center leading-tight mb-8">
-            PROJETS
+            {t('project').toUpperCase()}
           </h1>
         </div>
         <motion.div style={{ x }} className="flex gap-4">

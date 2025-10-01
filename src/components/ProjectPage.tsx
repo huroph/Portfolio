@@ -2,12 +2,14 @@
 import { useParams } from 'react-router-dom';
 import '../humane-font.css';
 import { useRef, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { projects } from '../data/projects';
 import Contact from './Contact';
 
 const ProjectPage = () => {
     const [contactZIndex, setContactZIndex] = useState(0);
     const [contactPointerEvents, setContactPointerEvents] = useState('none');
+    const { t, i18n } = useTranslation();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -80,7 +82,7 @@ const ProjectPage = () => {
                         ref={titleRef}
                         className="text-[20vw] font-bold text-[#ff4300] text-center mt-20 humane-title"
                     >
-                        {projectData.title}
+                        {i18n.language.startsWith('fr') ? projectData.title : (projectData.title_en || projectData.title)}
                     </h1>
                 </div>
 
@@ -94,7 +96,7 @@ const ProjectPage = () => {
                                 <div className="flex-1 border-t border-gray-200" />
                             </div>
                             <p className="text-md  text-[#222] font-normal leading-snug">
-                                {projectData.brief}
+                                {i18n.language.startsWith('fr') ? projectData.brief : (projectData.brief_en || projectData.brief)}
                             </p>
                         </div>
                         {/* YEAR */}
@@ -103,7 +105,7 @@ const ProjectPage = () => {
                                 <span className="uppercase text-[#ff4300] tracking-widest text-lg humane-title text-[40px] font-extrabold " style={{ letterSpacing: '.08em' }}>Year</span>
                                 <div className="flex-1 border-t border-gray-200" />
                             </div>
-                            <span className="text-md text-[#222] font-normal">{projectData.year}</span>
+                            <span className="">{projectData.year}</span>
                         </div>
                         {/* SERVICES */}
                         <div>
@@ -171,10 +173,8 @@ const ProjectPage = () => {
                 <div id="contact" className="w-full h-0" />
                 <section id="section10" >
                     <a className="scroll-down-btn"> <span></span></a>
-                        
+
                 </section>
-                {/* Texte vertical SCROLL à droite */}
-               
 
             </main>
 
