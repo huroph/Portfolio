@@ -5,6 +5,7 @@ import { useRef, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { projects } from '../data/projects';
 import Contact from './Contact';
+import HorizontalScrollCarousel from './HorizontalScrollCarousel';
 
 // Imports dynamiques des mockups pour tous les projets
 import trueTourismMockup1 from '../assets/truetourism/Mockup_1.png';
@@ -13,11 +14,15 @@ import BambouTechMockup1 from '../assets/BambouTech/Mockup_1.png';
 import BambouTechMockup2 from '../assets/BambouTech/Mockup_2.png';
 import EoleMockup1 from '../assets/Eole/Mockup_1.png';
 import EoleMockup2 from '../assets/Eole/Mockup_2.png';
+import MockupTrueTourism1 from './mockup/truetourism/Mockup_1';
+import MockupTrueTourism2 from './mockup/truetourism/Mockup_2';
+import MockupBambouTech1 from './mockup/bamboutech/Mockup_1';
+import MockupBambouTech2 from './mockup/bamboutech/Mockup_2';
 
 const ProjectPage = () => {
     const [contactZIndex, setContactZIndex] = useState(0);
     const [contactPointerEvents, setContactPointerEvents] = useState('none');
-    const { t, i18n } = useTranslation();
+    const { i18n } = useTranslation();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -93,9 +98,7 @@ const ProjectPage = () => {
     return (
         <div className="relative w-full min-h-screen bg-[#faf6e7]">
             {/* Contact en fond, effet rideau restauré */}
-            <div className="fixed inset-0" style={{ zIndex: contactZIndex, pointerEvents: contactPointerEvents as any }}>
-                <Contact />
-            </div>
+
             {/* Contenu principal scrollable, effet rideau natif */}
             <main
                 className="relative z-10 min-h-screen"
@@ -149,53 +152,65 @@ const ProjectPage = () => {
                         </div>
                     </div>
                 </section>
+                {/* images Mockup - Dynamiques selon le projet */}
+                {project?.toLowerCase() === 'truetourism' && (
+                    <>
+                        <section className="w-full flex flex-col items-center justify-center  bg-[#faf6e7] px-8 md:px-32  ">
+                            <MockupTrueTourism1 />
+                        </section>
+                        <section className="w-full flex flex-col items-center justify-center py-4 bg-[#faf6e7] px-8 md:px-32 gap-8">
+                            <MockupTrueTourism2 />
+                        </section>
+                    </>
+                )}
 
-                {/* images Mockup */}
-                <section className="w-full flex flex-col items-center justify-center  py-16 bg-[#faf6e7] px-8 md:px-32 gap-8">
-                    <div className="w-full flex justify-center">
-                        <img 
-                            src={currentMockups.mockup1} 
-                            alt={`Mockup 1 du projet ${projectData?.title}`} 
-                            className="w-2/3 h-auto"
-                        />
-                    </div>
-                     <div className="w-full flex justify-center">
-                        <img 
-                            src={currentMockups.mockup2} 
-                            alt={`Mockup 2 du projet ${projectData?.title}`} 
-                            className="w-2/3 h-auto"
-                        />
-                    </div>
-                </section>
-                {/* Section projet suivant */}
-                <section className="w-full flex flex-col items-center py-24 bg-[#faf6e7] px-8 md:px-32">
-                    <div className="w-full max-w-3xl flex flex-col items-center gap-8">
-                        <span className="uppercase text-[#ff4300] tracking-widest font-bold text-lg humane-title mb-6">Projet suivant</span>
-                        <div className="w-full flex flex-col md:flex-row items-center gap-8">
-                            <div className="w-[320px] h-[220px] rounded-3xl bg-[#ff4300] flex items-center justify-center text-white text-2xl font-bold opacity-80">
-                                {/* Image placeholder, à remplacer par l'image du projet suivant */}
-                                Image
-                            </div>
-                            <div className="flex-1 flex flex-col items-center md:items-start">
-                                <span className="text-3xl font-bold text-[#ff4300] humane-title">{
-                                    (() => {
-                                        const idx = projects.findIndex(p => p.slug.toLowerCase() === (project || '').toLowerCase());
-                                        const next = projects[(idx + 1) % projects.length];
-                                        return next.title;
-                                    })()
-                                }</span>
-                            </div>
+                {project?.toLowerCase() === 'bamboutech' && (
+                    <>
+                        <section className="w-full flex flex-col items-center justify-center  bg-[#faf6e7] px-8 md:px-32 gap-8">
+                            <MockupBambouTech1 />
+                        </section>
+                        <section className="w-full flex flex-col items-center justify-center py-4 bg-[#faf6e7] px-8 md:px-32 gap-8">
+                            <MockupBambouTech2 />
+                        </section>
+                    </>
+                )}
+
+                {project?.toLowerCase() === 'eole' && (
+                    <section className="w-full flex flex-col items-center justify-center py-16 bg-[#faf6e7] px-8 md:px-32 gap-8">
+                        <div className="w-full flex justify-center">
+                            <img
+                                src={currentMockups.mockup1}
+                                alt={`Mockup 1 du projet ${projectData?.title}`}
+                                className="w-2/3 h-auto"
+                            />
                         </div>
+                        <div className="w-full flex justify-center">
+                            <img
+                                src={currentMockups.mockup2}
+                                alt={`Mockup 2 du projet ${projectData?.title}`}
+                                className="w-2/3 h-auto"
+                            />
+                        </div>
+                    </section>
+                )}
+                {/* Section projet suivant */}
+                <div className="relative h-[200vh]">
+                    <section className="w-full h-screen flex flex-col items-center py-24 bg-[#faf6e7] sticky top-0">
+                        <div className="w-full  flex flex-col items-center gap-8">
+                            <div className='h-150 w-full justify-center flex items-end sticky '>
+                                <div className="uppercase text-[#ff4300]  font-extralight text-[200px] text-center mb-6">Projet suivant</div>
+                            </div>
+
+                        </div>
+                    </section>
+                    <div className="w-full flex flex-col items-center gap-8 justify-center  px-8  ">
+                        <MockupTrueTourism1 />
                     </div>
-                </section>
-                {/* Espace pour scroller et révéler Contact */}
-                <div className="w-full h-[100vh]" />
-                {/* Ancre scrollable pour la section contact */}
-                <div id="contact" className="w-full h-0" />
-                {/* Espace pour scroller et révéler Contact */}
-                <div className="w-full h-[100vh]" />
-                {/* Ancre scrollable pour la section contact */}
-                <div id="contact" className="w-full h-0" />
+                </div>
+                <div className="w-full flex flex-col items-center gap-8 justify-center">
+                    <Contact/>
+                </div>
+
                 <section id="section10" >
                     <a className="scroll-down-btn"> <span></span></a>
 

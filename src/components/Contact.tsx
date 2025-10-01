@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import githubLogo from '../assets/github_logo.svg';
-import linkedinLogo from '../assets/linkedin_logo.svg';
 import { useTranslation } from 'react-i18next';
 
 const Contact = () => {
