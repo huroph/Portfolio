@@ -6,6 +6,14 @@ import { useTranslation } from 'react-i18next';
 import { projects } from '../data/projects';
 import Contact from './Contact';
 
+// Imports dynamiques des mockups pour tous les projets
+import trueTourismMockup1 from '../assets/truetourism/Mockup_1.png';
+import trueTourismMockup2 from '../assets/truetourism/Mockup_2.png';
+import BambouTechMockup1 from '../assets/BambouTech/Mockup_1.png';
+import BambouTechMockup2 from '../assets/BambouTech/Mockup_2.png';
+import EoleMockup1 from '../assets/Eole/Mockup_1.png';
+import EoleMockup2 from '../assets/Eole/Mockup_2.png';
+
 const ProjectPage = () => {
     const [contactZIndex, setContactZIndex] = useState(0);
     const [contactPointerEvents, setContactPointerEvents] = useState('none');
@@ -49,6 +57,22 @@ const ProjectPage = () => {
 
     // Cherche les données du projet correspondant au paramètre d'URL
     const projectData = projects.find(p => p.slug.toLowerCase() === (project || '').toLowerCase());
+
+    // Fonction pour récupérer les images selon le projet
+    const getProjectMockups = (projectSlug: string) => {
+        switch (projectSlug.toLowerCase()) {
+            case 'truetourism':
+                return { mockup1: trueTourismMockup1, mockup2: trueTourismMockup2 };
+            case 'bamboutech':
+                return { mockup1: BambouTechMockup1, mockup2: BambouTechMockup2 };
+            case 'eole':
+                return { mockup1: EoleMockup1, mockup2: EoleMockup2 };
+            default:
+                return { mockup1: trueTourismMockup1, mockup2: trueTourismMockup2 };
+        }
+    };
+
+    const currentMockups = getProjectMockups(project || '');
 
     // Scroll en haut à chaque navigation sur la page projet
     useEffect(() => {
@@ -126,20 +150,21 @@ const ProjectPage = () => {
                     </div>
                 </section>
 
-                {/* Mosaïque d'images (placeholders) */}
-                <section className="w-full flex flex-col items-center py-16 bg-[#faf6e7] px-8 md:px-32">
-                    <div className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                        {(projectData.images.length > 0
-                            ? projectData.images
-                            : [1, 2, 3, 4, 5, 6]
-                        ).map((img, i) => (
-                            <div
-                                key={i}
-                                className="aspect-[4/3] rounded-3xl bg-[#ff4300] flex items-center justify-center text-white text-2xl font-bold opacity-80"
-                            >
-                                {typeof img === 'string' ? <img src={img} alt={projectData.title + ' visuel'} className="w-full h-full object-cover rounded-3xl" /> : `Image ${i + 1}`}
-                            </div>
-                        ))}
+                {/* images Mockup */}
+                <section className="w-full flex flex-col items-center justify-center  py-16 bg-[#faf6e7] px-8 md:px-32 gap-8">
+                    <div className="w-full flex justify-center">
+                        <img 
+                            src={currentMockups.mockup1} 
+                            alt={`Mockup 1 du projet ${projectData?.title}`} 
+                            className="w-2/3 h-auto"
+                        />
+                    </div>
+                     <div className="w-full flex justify-center">
+                        <img 
+                            src={currentMockups.mockup2} 
+                            alt={`Mockup 2 du projet ${projectData?.title}`} 
+                            className="w-2/3 h-auto"
+                        />
                     </div>
                 </section>
                 {/* Section projet suivant */}
