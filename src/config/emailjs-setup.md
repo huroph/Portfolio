@@ -20,6 +20,7 @@
   - `{{from_name}}` - Nom de l'expéditeur
   - `{{from_email}}` - Email de l'expéditeur  
   - `{{message}}` - Message
+  - `{{category}}` - Catégorie du projet (🌐 Projet Web, 📱 App Mobile, etc.)
   - `{{to_email}}` - Votre email (hugo.nahmias@icloud.com)
 - Notez le **Template ID** généré
 
@@ -45,6 +46,24 @@ const publicKey = 'your_public_key'; // Remplacez par votre Public Key
   <div style="margin-bottom: 20px;">
     <h2 style="color: #ff4300; margin-bottom: 10px;">Bonjour Hugo,</h2>
     <p>Vous avez reçu un nouveau message depuis votre portfolio :</p>
+  </div>
+  
+  <!-- Badge de catégorie en haut -->
+  <div style="text-align: center; margin-bottom: 20px;">
+    <span style="
+      display: inline-block;
+      background: linear-gradient(135deg, #ff4300, #ff9a6c);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 25px;
+      font-weight: bold;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 10px rgba(255, 67, 0, 0.3);
+    ">
+      📋 {{category}}
+    </span>
   </div>
   
   <div
@@ -76,16 +95,27 @@ const publicKey = 'your_public_key'; // Remplacez par votre Public Key
         </td>
         <td style="vertical-align: top;">
           <div style="margin-bottom: 15px;">
-            <div style="color: #2c3e50; font-size: 16px; margin-bottom: 5px;">
-              <strong>Nom :</strong> {{from_name}}
+            <div style="color: #2c3e50; font-size: 16px; margin-bottom: 8px;">
+              <strong>👤 Contact :</strong> {{from_name}}
             </div>
             <div style="color: #2c3e50; font-size: 16px; margin-bottom: 15px;">
-              <strong>Email :</strong> <a href="mailto:{{from_email}}" style="color: #ff4300;">{{from_email}}</a>
+              <strong>📧 Email :</strong> <a href="mailto:{{from_email}}" style="color: #ff4300; text-decoration: none;">{{from_email}}</a>
             </div>
           </div>
           <div style="color: #2c3e50; font-size: 16px;">
-            <strong>Message :</strong>
-            <p style="font-size: 16px; line-height: 1.5; margin-top: 8px; padding: 15px; background-color: white; border-left: 4px solid #ff4300; border-radius: 4px;">{{message}}</p>
+            <strong>💬 Message :</strong>
+            <div style="
+              font-size: 16px; 
+              line-height: 1.6; 
+              margin-top: 12px; 
+              padding: 20px; 
+              background-color: white; 
+              border-left: 4px solid #ff4300; 
+              border-radius: 8px;
+              box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            ">
+              {{message}}
+            </div>
           </div>
         </td>
       </tr>
@@ -93,7 +123,8 @@ const publicKey = 'your_public_key'; // Remplacez par votre Public Key
   </div>
   
   <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; text-align: center; color: #888; font-size: 12px;">
-    <p>Envoyé depuis votre portfolio</p>
+    <p>🚀 Envoyé depuis votre portfolio</p>
+    <p style="margin-top: 5px; color: #ff4300;">Répondez rapidement pour ne pas rater cette opportunité !</p>
   </div>
 </div>
 ```
