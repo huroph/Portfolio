@@ -71,6 +71,17 @@ const Contact = () => {
     setIsDropdownOpen(false);
   };
 
+  // Auto-clear message after 3 seconds
+  useEffect(() => {
+    if (message) {
+      const timer = setTimeout(() => {
+        setMessage('');
+      }, 3000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [message]);
+
   const sendEmail = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -84,12 +95,14 @@ const Contact = () => {
     }
 
     try {
-      // Configuration EmailJS - remplacez par vos vraies valeurs
-      const serviceId = 'service_7ml0cfk'; // À configurer
-      const templateId = 'template_vv226la'; // À configurer  
-      const publicKey = 'Du1KjwOFdcfGnIdYA'; // À configurer
+      // Configuration EmailJS
+      const serviceId = 'service_7ml0cfk';
+      const notificationTemplateId = 'template_vv226la'; // Template de notification (vers vous)
+      const autoReplyTemplateId = 'template_719k37i'; // Template d'auto-reply (vers l'expéditeur)
+      const publicKey = 'Du1KjwOFdcfGnIdYA';
 
-      const templateParams = {
+      // 1. Paramètres pour la notification (vers vous)
+      const notificationParams = {
         from_name: formData.name,
         from_email: formData.email,
         message: formData.message,
@@ -97,9 +110,35 @@ const Contact = () => {
         to_email: 'hugo.nahmiaspro@outlook.com'
       };
 
-      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      // 2. Paramètres pour l'auto-reply (vers l'expéditeur)
+      const autoReplyParams = {
+        from_name: formData.name,
+        category: formData.category,
+        to_email: formData.email, // IMPORTANT: vers l'expéditeur
+        reply_to: 'hugo.nahmiaspro@outlook.com'
+      };
 
-      setMessage(t('message_sent'));
+      console.log('📧 Envoi du mail de notification...', notificationParams);
+      console.log('🔄 Envoi de l\'auto-reply...', autoReplyParams);
+
+      // Envoyer d'abord la notification
+      const notificationResult = await emailjs.send(serviceId, notificationTemplateId, notificationParams, publicKey);
+      console.log('✅ Notification envoyée:', notificationResult);
+
+      // Puis envoyer l'auto-reply
+      try {
+        console.log('🔄 Tentative d\'envoi auto-reply avec template:', autoReplyTemplateId);
+        console.log('📋 Paramètres auto-reply complets:', JSON.stringify(autoReplyParams, null, 2));
+        
+        const autoReplyResult = await emailjs.send(serviceId, autoReplyTemplateId, autoReplyParams, publicKey);
+        console.log('✅ Auto-reply envoyé avec succès:', autoReplyResult);
+        setMessage(t('message_sent') + ' (avec confirmation automatique)');
+      } catch (autoReplyError) {
+        console.error('❌ ERREUR AUTO-REPLY DÉTAILLÉE:', autoReplyError);
+        console.log('🔍 Vérifiez que le template template_719k37i existe et que To Email = {{to_email}}');
+        setMessage(t('message_sent'));
+      }
+
       setFormData({ name: '', email: '', message: '', category: '' });
     } catch (error) {
       console.error('Erreur EmailJS:', error);
