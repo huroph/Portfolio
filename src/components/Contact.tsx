@@ -185,7 +185,7 @@ const Contact = () => {
 
 
   return (
-    <section className="w-full h-screen flex flex-col bg-[#ff4300] overflow-hidden">
+    <section className="w-full h-full flex flex-col bg-[#ff4300] overflow-hidden">
       <div className="w-full h-[200px] bg-[#faf6e7]"></div>
       <div className="flex-1 w-full max-w-6xl mx-auto px-6 py-4 flex flex-col">
         {/* Header compact */}
