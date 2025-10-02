@@ -1,6 +1,7 @@
 // Ce flag module reste true tant que la page n'est pas rechargée
 let hasLoadedOnce = false;
 import Loader from './components/Loader';
+import SmallScreenError from './components/SmallScreenError';
 import { useState, useEffect } from 'react';
 import './App.css'
 import './i18n';
@@ -27,11 +28,25 @@ function App() {
     return false;
   });
 
+  // Détection de la largeur d'écran
+  const [showSmallScreenError, setShowSmallScreenError] = useState(window.innerWidth < 800);
+
   useEffect(() => {
     if (!loading) return;
     const timer = setTimeout(() => setLoading(false), 3000);
     return () => clearTimeout(timer);
   }, [loading]);
+
+  // Écouter les changements de taille d'écran
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setShowSmallScreenError(width < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const [mainPointerEvents, setMainPointerEvents] = useState<React.CSSProperties['pointerEvents']>('auto');
 
@@ -53,6 +68,10 @@ function App() {
   }, []);
 
   if (loading) return <Loader />;
+  
+  // Afficher l'écran d'erreur si l'écran est trop petit
+  if (showSmallScreenError) return <SmallScreenError />;
+  
   return (
     <I18nextProvider i18n={i18n}>
       <div className="relative w-full min-h-screen bg-[#faf6e7]">
