@@ -39,8 +39,25 @@ const resources = {
       projet_introuvable: 'Projet introuvable',
       retour_accueil: "Retour à l'accueil",
       scroll: 'SCROLL',
-      ready_digital: 'Prêt à démarrer une nouvelle aventure digitale ensemble ?',
-      create_extra: "Créons quelque chose d'extraordinaire."
+      ready_digital: 'Ready to start a new digital adventure together?',
+      create_extra: "Let's create something extraordinary.",
+      
+      // Footer
+      footer_description: "Passionate UI/UX designer with solid experience as an engineer and entrepreneur. I transform complexity into intuitive and memorable experiences.",
+      footer_cta: "Ready to start your next project? Let's discuss!",
+      footer_available: "Available for your projects",
+      footer_navigation: "Navigation",
+      footer_resources: "Resources",
+      footer_services: "Services",
+      footer_work_together: "Let's work together!",
+      footer_project_idea: "Have a project in mind? Let's discuss your goals.",
+      footer_contact_me: "Contact me",
+      footer_follow: "Follow me:",
+      footer_newsletter: "Stay informed:",
+      footer_rights: "All rights reserved.",
+      footer_privacy: "Privacy Policy",
+      footer_terms: "Legal Notice",
+      footer_made_with: "Fait avec ❤️ à Paris"
     }
   },
   en: {

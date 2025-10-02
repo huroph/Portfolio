@@ -10,6 +10,7 @@ import HorizontalScrollCarousel from './components/HorizontalScrollCarousel.tsx'
 
 import About from './components/About';
 import Contact from './components/Contact';
+import Footer from './components/Footer';
   
 import HorizontalScrollText from './components/HorizontalScrollText';
 import MouseTrail from './components/mouse.tsx';
@@ -79,6 +80,9 @@ function App() {
             <a className="scroll-down-btn"> <span></span></a>
           </section>
         </main>
+        
+        {/* Footer en dehors du main pour éviter les conflits pointer-events */}
+        <Footer />
       </div>
     </I18nextProvider>
   );
