@@ -48,7 +48,7 @@ const About = () => {
               <motion.img
                 src={profil}
                 alt="Portrait"
-                className="rw-[320px] "
+                className="w-[200px] sm:w-[250px] md:w-[280px] lg:w-[320px] xl:w-[360px] h-auto"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1, transition: { delay: 0.3, duration: 0.7, ease: [0.4, 0.8, 0.2, 1] } }}
                 exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.5 } }}
@@ -122,7 +122,7 @@ const About = () => {
 
 
               <motion.p
-                className="text-[#ff9a6c] text-base max-w-xl mb-6 z-10"
+                className="text-[#ff9a6c] text-base max-w-xl mb-6 z-10 mr-32"
                 initial="hidden"
                 animate="visible"
                 exit="exit"
@@ -133,7 +133,7 @@ const About = () => {
                 {t('about_description')}
               </motion.p>
               <motion.div
-                className="italic text-[#ff4300] text-center text-lg z-10"
+                className="italic text-[#ff4300]  text-lg z-10 mr-32"
                 initial="hidden"
                 animate="visible"
                 exit="exit"
