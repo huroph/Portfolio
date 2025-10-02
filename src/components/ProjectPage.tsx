@@ -20,7 +20,6 @@ import MockupBambouTech2 from './mockup/bamboutech/Mockup_2';
 import transTrueTourism from '../assets/truetourism/transTruetourism.png';
 import transBambouTech from '../assets/BambouTech/transBambouTech.png';
 import transEole from '../assets/Eole/transEole.png';
-import { tr } from 'framer-motion/client';
 
 const ProjectPage = () => {
 
