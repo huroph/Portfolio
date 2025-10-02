@@ -4,30 +4,7 @@ const Footer = () => {
   const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
-  // Fonction pour navigation smooth scroll
-  const scrollToSection = (sectionId: string) => {
-    console.log('Navigation vers:', sectionId); // Debug
-    
-    if (sectionId === 'top') {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-      return;
-    }
-    
-    const element = document.getElementById(sectionId.replace('#', ''));
-    console.log('Élément trouvé:', element); // Debug
-    
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    } else {
-      console.warn('Élément non trouvé pour:', sectionId);
-    }
-  };
+
 
   const socialLinks = [
     {
@@ -60,155 +37,15 @@ const Footer = () => {
     }
   ];
 
-  const quickLinks = [
-    { name: t('about') || 'À propos', href: '#about' },
-    { name: t('project') || 'Projets', href: '#projects' },
-    { name: t('contact') || 'Contact', href: '#contact' }
-  ];
-
-  const services = [
-    'UI/UX Design',
-    'Design System',
-    'Prototype & Wireframe',
-    'Mobile App Design',
-    'Web Design',
-    'Brand Identity'
-  ];
+ 
 
   return (
-    <footer className="bg-gray-900 text-white relative z-50" style={{ pointerEvents: 'auto' }}>
+    <footer className="bg-[#1a1a1a] text-white relative z-50" style={{ pointerEvents: 'auto' }}>
       {/* Section principale */}
-      <div className="max-w-6xl mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          
-          {/* Colonne 1: À propos */}
-          <div className="lg:col-span-2">
-            <div className="mb-6">
-              
-             
-              <p className="text-[#ff9a6c] text-sm font-medium">
-                🚀 {t('ready_digital')}
-              </p>
-            </div>
-            
-            {/* Contact rapide */}
-            <div className="space-y-2">
-              <div className="flex items-center gap-3 text-sm">
-                <span className="text-[#ff9a6c]">📧</span>
-                <a href="mailto:hugo.nahmiaspro@outlook.com" className="hover:text-[#ff4300] transition-colors">
-                  hugo.nahmiaspro@outlook.com
-                </a>
-              </div>
-              <div className="flex items-center gap-3 text-sm">
-                <span className="text-[#ff9a6c]">📍</span>
-                <span>Paris, France</span>
-              </div>
-              <div className="flex items-center gap-3 text-sm">
-                <span className="text-[#ff9a6c]">💼</span>
-                <span>Disponible pour vos projets</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Colonne 2: Liens rapides */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4 text-[#ff4300]">Navigation</h4>
-            <ul className="space-y-2">
-              {quickLinks.map((link, index) => (
-                <li key={index}>
-                  <button 
-                    onClick={() => {
-                      console.log('Clic sur:', link.name, link.href); // Debug
-                      scrollToSection(link.href);
-                    }}
-                    className="text-gray-300 hover:text-[#ff4300] transition-colors text-sm cursor-pointer flex items-center gap-2 group w-full text-left p-2 rounded hover:bg-gray-800/50"
-                  >
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">
-                      {link.name}
-                    </span>
-                    <svg 
-                      className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17l9.2-9.2M17 17V7H7" />
-                    </svg>
-                  </button>
-                </li>
-              ))}
-            </ul>
-
-            {/* Bouton Retour en haut */}
-            <div className="mt-6 pt-4 border-t border-gray-700">
-              <button
-                onClick={() => {
-                  console.log('Clic sur: Retour en haut'); // Debug
-                  scrollToSection('top');
-                }}
-                className="text-gray-300 hover:text-[#ff4300] transition-colors text-sm cursor-pointer flex items-center gap-2 group p-2 rounded hover:bg-gray-800/50"
-              >
-                <svg 
-                  className="w-4 h-4 group-hover:-translate-y-1 transition-transform duration-200" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                </svg>
-                <span>Retour en haut</span>
-              </button>
-            </div>
-
-            
-          </div>
-
-          {/* Colonne 3: Services */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4 text-[#ff4300]">Services</h4>
-            <ul className="space-y-2">
-              {services.map((service, index) => (
-                <li key={index} className="text-gray-300 text-sm">
-                  <span className="text-[#ff9a6c] mr-2">•</span>
-                  {service}
-                </li>
-              ))}
-            </ul>
-
-            {/* Call to action */}
-            
-          </div>
-        </div>
-      </div>
+      
 
       {/* Section réseaux sociaux */}
-      <div className="border-t border-gray-800">
-        <div className="max-w-6xl mx-auto px-6 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            
-            {/* Réseaux sociaux */}
-            <div className="flex items-center gap-4">
-              <span className="text-gray-400 text-sm">Suivez-moi :</span>
-              <div className="flex gap-3">
-                {socialLinks.map((social, index) => (
-                  <a
-                    key={index}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 bg-gray-800 rounded-full hover:bg-[#ff4300] text-gray-400 hover:text-white transition-all duration-300"
-                    aria-label={social.name}
-                  >
-                    {social.icon}
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            
-          </div>
-        </div>
-      </div>
+      
 
       {/* Section copyright */}
       <div className="border-t border-gray-800 bg-gray-950">
@@ -219,14 +56,7 @@ const Footer = () => {
             </div>
             
             <div className="flex items-center gap-4 text-xs text-gray-500">
-              <a href="/privacy" className="hover:text-[#ff4300] transition-colors">
-                Politique de confidentialité
-              </a>
-              <span>•</span>
-              <a href="/terms" className="hover:text-[#ff4300] transition-colors">
-                Mentions légales
-              </a>
-              <span>•</span>
+              
               <span>Fait avec ❤️ à Paris</span>
             </div>
           </div>
