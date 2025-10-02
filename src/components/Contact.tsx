@@ -215,13 +215,13 @@ const socialLinks = [
                   </button>
                   
                   {isDropdownOpen && (
-                    <div className="absolute top-full left-0 right-0 mt-1 bg-gray-900 border border-[#ff9a6c] rounded-lg shadow-xl z-50 max-h-48 overflow-y-auto">
+                    <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-[#ff9a6c] rounded-lg shadow-xl z-50 max-h-48 overflow-y-auto">
                       {categories.map((category) => (
                         <button
                           key={category.value}
                           type="button"
                           onClick={() => handleCategorySelect(category.value)}
-                          className="w-full px-3 py-2 text-left text-white text-sm hover:bg-[#ff4300] transition-colors border-b border-gray-700 last:border-b-0"
+                          className="w-full px-3 py-2 bg-white text-left text-black hover:text-white text-sm hover:bg-[#ff4300] transition-colors border-b border-gray-200 last:border-b-0"
                         >
                           {category.label}
                         </button>
