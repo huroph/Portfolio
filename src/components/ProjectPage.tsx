@@ -1,7 +1,7 @@
 
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import '../humane-font.css';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { projects } from '../data/projects';
 import Contact from './Contact';
@@ -17,18 +17,71 @@ import MockupTrueTourism1 from './mockup/truetourism/Mockup_1';
 import MockupTrueTourism2 from './mockup/truetourism/Mockup_2';
 import MockupBambouTech1 from './mockup/bamboutech/Mockup_1';
 import MockupBambouTech2 from './mockup/bamboutech/Mockup_2';
+import transTrueTourism from '../assets/truetourism/transTruetourism.png';
+import transBambouTech from '../assets/BambouTech/transBambouTech.png';
+import transEole from '../assets/Eole/transEole.png';
+import { tr } from 'framer-motion/client';
 
 const ProjectPage = () => {
- 
-    const { i18n } = useTranslation();
 
-    
+    const { i18n, t } = useTranslation();
+    const navigate = useNavigate();
+    const [isBackButtonVisible, setIsBackButtonVisible] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
 
     const { project } = useParams();
     const titleRef = useRef<HTMLHeadingElement>(null);
 
     // Cherche les données du projet correspondant au paramètre d'URL
     const projectData = projects.find(p => p.slug.toLowerCase() === (project || '').toLowerCase());
+
+    // Gestion du scroll pour le bouton retour
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                // Scroll vers le bas
+                setIsBackButtonVisible(false);
+            } else {
+                // Scroll vers le haut
+                setIsBackButtonVisible(true);
+            }
+            
+            setLastScrollY(currentScrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [lastScrollY]);
+
+    // Fonction pour obtenir le projet suivant
+    const getNextProject = () => {
+        const currentIndex = projects.findIndex(p => p.slug.toLowerCase() === (project || '').toLowerCase());
+        const nextIndex = (currentIndex + 1) % projects.length;
+        return projects[nextIndex];
+    };
+
+    const nextProject = getNextProject();
+
+    // Fonction pour récupérer l'image de transition selon le projet
+    const getTransitionImage = (projectSlug: string) => {
+        switch (projectSlug.toLowerCase()) {
+            case 'truetourism':
+                return transTrueTourism;
+            case 'bamboutech':
+                return transBambouTech;
+            case 'eole':
+                return transEole;
+            default:
+                return transTrueTourism; // Image par défaut
+        }
+    };
+
+    // Navigation vers le projet suivant
+    const handleNextProject = () => {
+        navigate(`/project/${nextProject.slug}`);
+    };
 
     // Fonction pour récupérer les images selon le projet
     const getProjectMockups = (projectSlug: string) => {
@@ -64,6 +117,25 @@ const ProjectPage = () => {
 
     return (
         <div className="relative w-full min-h-screen bg-[#faf6e7]">
+            {/* Bouton retour fixe en haut */}
+            <button 
+                onClick={() => navigate('/#projects')}
+                className={`fixed top-8 left-8 z-50 flex items-center gap-2 px-6 py-3 text-[#ff4300] font-medium cursor-pointer hover:underline transition-all duration-300 group ${
+                    isBackButtonVisible ? 'translate-y-0' : '-translate-y-20'
+                }`}
+                aria-label="Retour aux projets"
+            >
+                <svg 
+                    className="w-5 h-5 transition-all duration-300 group-hover:-translate-x-1 group-hover:scale-110" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 12H5m0 0l7 7m-7-7l7-7" />
+                </svg>
+                <span className="transition-all duration-300 group-hover:scale-110">{t('back_button')}</span>
+            </button>
+
             {/* Contact en fond, effet rideau restauré */}
 
             {/* Contenu principal scrollable, effet rideau natif */}
@@ -163,19 +235,37 @@ const ProjectPage = () => {
                 {/* Section projet suivant */}
                 <div className="relative h-[200vh]">
                     <section className="w-full h-screen flex flex-col items-center py-24 bg-[#faf6e7] sticky top-0">
-                        <div className="w-full  flex flex-col items-center gap-8">
-                            <div className='h-150 w-full justify-center flex items-end sticky '>
-                                <div className="uppercase text-[#ff4300]  font-extralight text-[200px] text-center mb-6">Projet suivant</div>
+                        <div className="w-full flex flex-col items-center gap-8">
+                            <div className='h-150 w-full justify-center flex items-end sticky'>
+                                <div className="uppercase text-[#ff4300] font-extralight text-[200px] text-center mb-6">{t('next_project_title')}</div>
                             </div>
-
                         </div>
                     </section>
-                    <div className="w-full flex flex-col items-center gap-8 justify-center  px-8  ">
-                        <MockupTrueTourism1 />
-                    </div>
+
+                    <section className="w-full flex flex-col items-center gap-8 justify-center px-8">
+                        <div className="flex justify-center w-full h-screen">
+                            {/* Image cliquable pour aller au projet suivant */}
+                            <button 
+                                onClick={handleNextProject}
+                                className="relative flex flex-col gap-12 items-center justify-center h-full cursor-pointer group focus:outline-none"
+                                aria-label={`Aller au projet ${nextProject.title}`}
+                            >
+                                <img
+                                    src={getTransitionImage(nextProject.slug)}
+                                    alt={`Aperçu du projet ${nextProject.title}`}
+                                    className="w-1/2 h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                                />
+                                {/* Titre du projet suivant */}
+                                <div className="text-center">
+                                   
+                                    <p className="text-[#ff4300] opacity-70">{t('click_to_view')}</p>
+                                </div>
+                            </button>
+                        </div>
+                    </section>
                 </div>
                 <div className="w-full flex flex-col items-center gap-8 justify-center">
-                    <Contact/>
+                    <Contact />
                 </div>
 
                 <section id="section10" >
