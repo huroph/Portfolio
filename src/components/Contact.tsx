@@ -294,6 +294,16 @@ const socialLinks = [
                   ))}
                 </div>
               </div>
+              <div className="flex flex-col md:flex-row justify-between items-center gap-2">
+            <div className="text-gray-200 text-sm">
+              © 2025 Hugo Nahmias. Tous droits réservés.
+            </div>
+            
+            <div className="flex items-center gap-4 text-xs text-gray-200">
+              
+              <span>Fait avec ❤️ à Paris</span>
+            </div>
+          </div>
             </div>
           </div>
         </div>
