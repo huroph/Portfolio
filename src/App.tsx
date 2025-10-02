@@ -56,9 +56,7 @@ function App() {
     <I18nextProvider i18n={i18n}>
       <div className="relative w-full min-h-screen bg-[#faf6e7]">
         {/* Contact en fond, toujours présent */}
-        <div className="fixed inset-0 z-0 pointer-events-auto">
-          <Contact />
-        </div>
+        
         {/* Contenu principal scrollable, effet rideau natif */}
         <main
           className="relative z-10 min-h-screen bg-transparent"
@@ -73,10 +71,10 @@ function App() {
           <div id='projects'>
             <HorizontalScrollCarousel />
           </div>
-          {/* Espace pour scroller et révéler Contact */}
-          <div className="w-full h-[100vh]" />
-          {/* Ancre scrollable pour la section contact */}
-          <div id="contact" className="w-full h-0" />
+          <div id='contact'>
+            <Contact />
+          </div>
+         
           <section id="section10" >
             <a className="scroll-down-btn"> <span></span></a>
           </section>
