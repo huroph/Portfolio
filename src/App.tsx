@@ -8,6 +8,7 @@ import './i18n';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import HorizontalScrollCarousel from './components/HorizontalScrollCarousel.tsx'
 
 import About from './components/About';
@@ -105,6 +106,8 @@ function App() {
         
         {/* Vercel Analytics */}
         <Analytics />
+        {/* Vercel Speed Insights */}
+        <SpeedInsights />
       </div>
     </I18nextProvider>
   );
