@@ -93,7 +93,7 @@ function App() {
           <div id='projects'>
             <HorizontalScrollCarousel />
           </div>
-          <div id='contact'>
+          <div id='contact' className='h-screen'>
             <Contact />
           </div>
          
