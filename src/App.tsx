@@ -7,6 +7,7 @@ import './App.css'
 import './i18n';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
+import { Analytics } from '@vercel/analytics/react';
 import HorizontalScrollCarousel from './components/HorizontalScrollCarousel.tsx'
 
 import About from './components/About';
@@ -101,7 +102,9 @@ function App() {
         </main>
         
         {/* Footer en dehors du main pour éviter les conflits pointer-events */}
-   
+        
+        {/* Vercel Analytics */}
+        <Analytics />
       </div>
     </I18nextProvider>
   );
