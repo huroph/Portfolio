@@ -91,7 +91,7 @@ const HorizontalScrollText = () => {
                                     }}
                                 >
                                     <motion.div
-                                        className="absolute top-0 left-0 w-full h-full bg-[#ff4300]"
+                                        className="absolute top-0 left-0 w-[400px] h-[100px] bg-[#ff4300] opacity-80 "
                                         variants={{
                                             rest: {
                                                 y: "100%",
@@ -104,6 +104,24 @@ const HorizontalScrollText = () => {
                                         }}
                                         transition={{
                                             duration: 0.6,
+                                            ease: [0.34, 1.56, 0.64, 1]
+                                        }}
+                                    />
+                                    <motion.div
+                                        className="absolute top-0 left-0 w-[400px] h-[100px] bg-[#ff4300]  mb-10 "
+                                        variants={{
+                                            rest: {
+                                                y: "100%",
+                                            },
+                                            hover: {
+                                                y: "0%",
+                                                rotateZ: "10deg",
+                                                scale: 2
+                                            
+                                            }
+                                        }}
+                                        transition={{
+                                            duration: 1.4,
                                             ease: [0.34, 1.56, 0.64, 1]
                                         }}
                                     />
