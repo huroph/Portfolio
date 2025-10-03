@@ -118,10 +118,10 @@ const Card = ({ card }: { card: { id: number; img: string; alt: string } }) => {
           />
 
           {/* Section info en bas - visible dans la zone OU au hover */}
-          <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-b from-transparent to-[#faf6e7] h-[200px] flex items-end justify-center pb-2 transition-opacity duration-300 ${
+          <div className={`absolute bottom-0 mt-[100px] left-0 right-0 bg-gradient-to-b from-transparent to-[#faf6e770] h-[200px] flex items-end justify-center  transition-opacity duration-300 ${
             isInZone || false ? 'opacity-100' : 'opacity-0'
           } group-hover:opacity-100`}>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center translate-y-24 mb-4">
               <h3 className="text-xl font-bold text-[#ff4300] mb-3">
                 {card.alt}
               </h3>
