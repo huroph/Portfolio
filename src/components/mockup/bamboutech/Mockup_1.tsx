@@ -3,10 +3,10 @@ import Ecran2 from '../../../assets/BambouTech/Ecran_2.png';
 
 const MockupBambouTech1 = () => {
   return (
-    <div className="w-2/3 h-auto bg-gradient-to-br from-pink-100 to-gray-100 px-8 pt-8 rounded-3xl">
+    <div className="w-2/3 bg-gradient-to-br from-pink-100 to-gray-100  pt-8 rounded-3xl overflow-hidden">
       <div className="max-w-6xl mx-auto">
         {/* Header avec Font et Colors */}
-        <div className="flex flex-col md:flex-row justify-between items-start mb-12 gap-8">
+        <div className="flex flex-col md:flex-row justify-between items-start  mx-8 gap-8">
           {/* Font Section */}
           <div className="flex-1">
             <h3 className="text-gray-600 text-sm font-medium mb-4 tracking-wide">Font</h3>
@@ -14,9 +14,9 @@ const MockupBambouTech1 = () => {
               Montserrat
             </h2>
           </div>
-          
+
           {/* Colors Section */}
-          <div className="flex-1">
+          <div className="flex-1  ">
             <h3 className="text-gray-600 text-sm font-medium mb-4 tracking-wide">Colors</h3>
             <div className="flex gap-4">
               <div className="flex flex-col items-center">
@@ -40,38 +40,29 @@ const MockupBambouTech1 = () => {
         </div>
 
         {/* iPhone Mockups - Container avec overflow hidden */}
-        <div className="h-[460px] overflow-hidden relative ">
-          <div className="flex justify-center items-end h-full ">
+        <div className="h-[460px]  ">
+          <div className="flex justify-center items-end  ">
             {/* Premier iPhone */}
-            <div className="relative transform  translate-y-35">
-                  <div className="relative">
-                {/* iPhone Frame */}
-                <div className="w-[300px] h-[600px] ">
-                    <img 
-                      src={Ecran1} 
-                      alt="TrueTourism App Screen 1" 
-                      className=" "
-                      loading="lazy"
-                    />
-            </div>
-                </div>
+            <div className=" transform rotate-[-8deg] translate-y-10">
+              <img
+                loading="lazy"
+                src={Ecran1}
+                alt="TrueTourism App Screen 1"
+                className=" w-full h-full object-cover"
+              />
             </div>
 
             {/* Deuxième iPhone */}
-            <div className="relative transform  translate-y-50">
-             
-                  <div className="relative">
-                {/* iPhone Frame */}
-                <div className="w-[300px] h-[600px] ">
+            <div className=" transform rotate-[10deg] translate-y-15">
 
-                    <img 
-                      src={Ecran2} 
-                      alt="TrueTourism App Screen 2" 
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                </div>
-                </div>
+
+              <img
+                loading="lazy"
+                src={Ecran2}
+                alt="TrueTourism App Screen 2"
+                className="w-full h-full object-cover"
+              />
+
             </div>
           </div>
         </div>

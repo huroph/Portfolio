@@ -17,9 +17,9 @@ import MockupTrueTourism1 from './mockup/truetourism/Mockup_1';
 import MockupTrueTourism2 from './mockup/truetourism/Mockup_2';
 import MockupBambouTech1 from './mockup/bamboutech/Mockup_1';
 import MockupBambouTech2 from './mockup/bamboutech/Mockup_2';
-import transTrueTourism from '../assets/truetourism/transTruetourism.png';
-import transBambouTech from '../assets/BambouTech/transBambouTech.png';
-import transEole from '../assets/Eole/transEole.png';
+import transTrueTourism from '../assets/truetourism/transTruetourism.webp';
+import transBambouTech from '../assets/BambouTech/transBambouTech.webp';
+import transEole from '../assets/Eole/transEole.webp';
 
 const ProjectPage = () => {
 
@@ -139,10 +139,10 @@ const ProjectPage = () => {
 
             {/* Contenu principal scrollable, effet rideau natif */}
             <main
-                className="relative z-10 min-h-screen"
+                className="relative z-10 min-h-screen flex flex-col  items-center justify-center"
             >
                 {/* Titre projet pleine hauteur */}
-                <div className="flex flex-col items-center justify-end h-screen bg-[#faf6e7] px-8 md:px-32">
+                <div className="flex flex-col items-center justify-end h-screen bg-[#faf6e7] px-8 ">
                     <h1
                         ref={titleRef}
                         className="text-[20vw] font-bold text-[#ff4300] text-center mt-20 humane-title"
@@ -152,7 +152,7 @@ const ProjectPage = () => {
                 </div>
 
                 {/* Brief projet style maquette */}
-                <section className="w-full flex flex-col items-center py-16 bg-[#faf6e7] px-100 " >
+                <section className="w-1/2 flex flex-col items-center py-16 bg-[#faf6e7]  " >
                     <div className="w-full max-w-5xl flex flex-col gap-12">
                         {/* BRIEF */}
                         <div>
@@ -193,10 +193,10 @@ const ProjectPage = () => {
                 {/* images Mockup - Dynamiques selon le projet */}
                 {project?.toLowerCase() === 'truetourism' && (
                     <>
-                        <section className="w-full flex flex-col items-center justify-center  bg-[#faf6e7] px-8 md:px-32  ">
+                        <section className="w-full flex flex-col items-center justify-center  bg-[#faf6e7]   ">
                             <MockupTrueTourism1 />
                         </section>
-                        <section className="w-full flex flex-col items-center justify-center py-4 bg-[#faf6e7] px-8 md:px-32 gap-8">
+                        <section className="w-full flex flex-col items-center justify-center py-4 bg-[#faf6e7] ">
                             <MockupTrueTourism2 />
                         </section>
                     </>
@@ -234,11 +234,11 @@ const ProjectPage = () => {
                     </section>
                 )}
                 {/* Section projet suivant */}
-                <div className="relative h-[200vh]">
+                <div className="relative h-[200vh] ">
                     <section className="w-full h-screen flex flex-col items-center py-24 bg-[#faf6e7] sticky top-0">
                         <div className="w-full flex flex-col items-center gap-8">
                             <div className='h-150 w-full justify-center flex items-end sticky'>
-                                <div className="uppercase text-[#ff4300] font-extralight text-[200px] text-center mb-6">{t('next_project_title')}</div>
+                                <div className="uppercase text-[#ff4300] font-extralight text-[20vw] text-center mb-6">{t('next_project_title')}</div>
                             </div>
                         </div>
                     </section>
@@ -254,7 +254,7 @@ const ProjectPage = () => {
                                 <img
                                     src={getTransitionImage(nextProject.slug)}
                                     alt={`Aperçu du projet ${nextProject.title}`}
-                                    className="w-1/2 h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                                    className="w-1/2 h-auto object-cover  "
                                 />
                                 {/* Titre du projet suivant */}
                                 <div className="text-center">
