@@ -72,7 +72,7 @@ const resources = {
       about_quote: 'Turning complexity into intuitive and beautiful experiences',
   CONTACT: 'CONTACT',
   about: 'About',
-  project: 'Project',
+  project: 'Projects',
   all_projects: 'All projects',
   contact: 'Contact',
       contact_idea: 'Your ideas deserve more than just a screen.',
