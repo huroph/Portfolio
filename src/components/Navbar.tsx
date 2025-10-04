@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects } from '../data/projects';
+import { Link } from 'react-router-dom';
 
 const navLinks = [
 	{ href: '#about', label: 'about' },
@@ -97,14 +98,14 @@ const Navbar = () => {
 											>
 												<div className="py-2">
 													{projects.map((project) => (
-														<a
+														<Link
 															key={project.slug}
-															href={`/project/${project.slug}`}
+															to={`/project/${project.slug}`}
 															className="block px-4 py-2 text-[#ff4300] hover:bg-[#ff4300] hover:bg-opacity-10 transition-colors duration-150"
 															onClick={() => setIsProjectDropdownOpen(false)}
 														>
 															{project.title}
-														</a>
+														</Link>
 													))}
 												</div>
 											</motion.div>
@@ -252,14 +253,14 @@ const Navbar = () => {
 																transition={{ duration: 0.2 }}
 															>
 																{projects.map((project) => (
-																	<a
+																	<Link
 																		key={project.slug}
-																		href={`/project/${project.slug}`}
+																		to={`/project/${project.slug}`}
 																		className="block text-[#ff4300] text-lg font-light hover:text-[#ff5722] transition-colors duration-200 py-1 opacity-80"
 																		onClick={handleMobileLinkClick}
 																	>
 																		{project.title}
-																	</a>
+																	</Link>
 																))}
 															</motion.div>
 														)}
