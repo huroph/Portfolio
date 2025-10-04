@@ -30,7 +30,7 @@ const About = () => {
   const { t } = useTranslation();
 
   return (
-  <section ref={ref} className="w-full h-screen flex flex-col  py-24 bg-[#faf6e7] ">
+  <section ref={ref} className="w-full h-screen flex flex-col  py-24 bg-[#faf6e7] items-center justify-center" >
       <div className="flex-1 flex items-center justify-end gap-12 relative md:flex-row flex-col">
 
         {/* Image */}
