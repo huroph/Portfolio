@@ -300,22 +300,22 @@ const Contact = () => {
           <div className="flex flex-col gap-6 lg:pl-8 mt-8 pointer-events-auto" style={{ pointerEvents: 'auto' }}>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
               <div className=" rounded-lg p-4 backdrop-blur-sm">
-                <div className="text-[#ff9a6c] text-sm font-medium mb-1">📧 {t('EMAIL')}</div>
+                <div className="text-[#ff9a6c] text-sm font-medium mb-1">{t('EMAIL')}</div>
                 <div className="text-white font-medium">hugo.nahmiaspro@outlook.com</div>
               </div>
 
               <div className=" rounded-lg p-4 backdrop-blur-sm">
-                <div className="text-[#ff9a6c] text-sm font-medium mb-1">📍 {t('LOCATION')}</div>
+                <div className="text-[#ff9a6c] text-sm font-medium mb-1">{t('LOCATION')}</div>
                 <div className="text-white font-medium">Paris, France</div>
               </div>
 
               <div className="rounded-lg p-4 backdrop-blur-sm">
-                <div className="text-[#ff9a6c] text-sm font-medium mb-1">🕐 {t('LOCAL_TIME')}</div>
+                <div className="text-[#ff9a6c] text-sm font-medium mb-1">{t('LOCAL_TIME')}</div>
                 <div className="text-white font-medium">{time}</div>
               </div>
 
               <div className="rounded-lg p-4 backdrop-blur-sm">
-                <div className="text-[#ff9a6c] text-sm font-medium mb-2">🔗 {t('CONNECT')}</div>
+                <div className="text-[#ff9a6c] text-sm font-medium mb-2">{t('CONNECT')}</div>
                 <div className="flex gap-3">
                   {socialLinks.map((social, index) => (
                     <a
@@ -342,7 +342,7 @@ const Contact = () => {
               </div>
               <div className="flex items-center gap-4 text-xs text-gray-200">
 
-                <span>Fait avec ❤️ à Paris</span>
+                <span>{t('footer_made_with')}</span>
               </div>
             </div>
           </div>
