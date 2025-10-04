@@ -31,7 +31,7 @@ function App() {
   });
 
   // Détection de la largeur d'écran
-  const [showSmallScreenError, setShowSmallScreenError] = useState(window.innerWidth < 800);
+  const [showSmallScreenError, setShowSmallScreenError] = useState(window.innerWidth < 100);
 
   // Callback pour que le Loader puisse signaler qu'il a terminé
   const handleLoaderComplete = () => {
@@ -42,7 +42,7 @@ function App() {
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      setShowSmallScreenError(width < 768);
+      setShowSmallScreenError(width < 108);
     };
 
     window.addEventListener('resize', handleResize);

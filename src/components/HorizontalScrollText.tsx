@@ -68,7 +68,7 @@ const HorizontalScrollText = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -40 }}
                                 transition={{ duration: 0.5, ease: [0.4, 0.8, 0.2, 1] }}
-                                className="text-[2vw]  text-[#ff4300] text-center leading-tight mb-8 mt-10 font-extralight"
+                                className="lg:text-[2vw] md:text-[2vw] sm:text-[5vw] text-[5vw] text-[#ff4300] text-center leading-tight mb-8 mt-10 font-extralight"
                             >
                                 {t('scroll_intro')}
                             </motion.p>
