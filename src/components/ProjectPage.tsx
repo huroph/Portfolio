@@ -119,7 +119,7 @@ const ProjectPage = () => {
             {/* Bouton retour fixe en haut */}
             <button 
                 onClick={() => navigate('/#projects')}
-                className={`fixed top-8 left-8 z-50 flex items-center gap-2 px-6 py-3 text-[#ff4300] font-medium cursor-pointer hover:underline transition-all duration-300 group ${
+                className={`fixed top-8 left-4 md:left-8 z-50 flex items-center gap-2 px-4 md:px-6 py-3 text-[#ff4300] font-medium cursor-pointer hover:underline transition-all duration-300 group ${
                     isBackButtonVisible ? 'translate-y-0' : '-translate-y-20'
                 }`}
                 aria-label="Retour aux projets"
@@ -135,7 +135,6 @@ const ProjectPage = () => {
                 <span className="transition-all duration-300 group-hover:scale-110">{t('back_button')}</span>
             </button>
 
-            {/* Contact en fond, effet rideau restauré */}
 
             {/* Contenu principal scrollable, effet rideau natif */}
             <main
@@ -145,7 +144,7 @@ const ProjectPage = () => {
                 <div className="flex flex-col items-center justify-end h-screen bg-[#faf6e7] px-8 ">
                     <h1
                         ref={titleRef}
-                        className="text-[20vw] font-bold text-[#ff4300] text-center mt-20 humane-title"
+                        className="text-[20vw] font-bold text-[#ff4300] text-center mt-20 humane-title  mb-30"
                     >
                         {i18n.language.startsWith('fr') ? projectData.title : (projectData.title_en || projectData.title)}
                     </h1>
