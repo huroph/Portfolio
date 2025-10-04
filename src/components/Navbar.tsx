@@ -2,10 +2,11 @@ import Logo from '../assets/logo.svg';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { projects } from '../data/projects';
 
 const navLinks = [
 	{ href: '#about', label: 'about' },
-	{ href: '#projects', label: 'project' },
+	{ href: '#projects', label: 'project', hasDropdown: true },
 	{ href: '#contact', label: 'contact' },
 ];
 
@@ -13,7 +14,9 @@ const Navbar = () => {
 	const { t } = useTranslation();
 	const [show, setShow] = useState(true);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+	const [isProjectDropdownOpen, setIsProjectDropdownOpen] = useState(false);
 	const lastScroll = useRef(0);
+	const dropdownRef = useRef<HTMLLIElement>(null);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -29,9 +32,22 @@ const Navbar = () => {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
+	// Fermer le dropdown quand on clique ailleurs
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+				setIsProjectDropdownOpen(false);
+			}
+		};
+
+		document.addEventListener('mousedown', handleClickOutside);
+		return () => document.removeEventListener('mousedown', handleClickOutside);
+	}, []);
+
 	// Fermer le menu mobile quand on clique sur un lien
 	const handleMobileLinkClick = () => {
 		setIsMobileMenuOpen(false);
+		setIsProjectDropdownOpen(false); // Ferme aussi le dropdown des projets
 	};
 
 	// Empêcher le scroll du body quand le menu mobile est ouvert
@@ -63,20 +79,69 @@ const Navbar = () => {
 				{/* Navigation desktop */}
 				<ul className="hidden md:flex flex-1 justify-center gap-24">
 					{navLinks.map((link) => (
-						<li key={link.href}>
-							<a
-								href={link.href}
-								className="text-[#ff4300] text-xl font-light hover:underline transition"
-							>
-								{t(link.label)}
-							</a>
+						<li key={link.href} className="relative" ref={link.hasDropdown ? dropdownRef : undefined}>
+							{link.hasDropdown ? (
+								<>
+									{/* Lien Projects avec dropdown */}
+									<button
+										onClick={() => setIsProjectDropdownOpen(!isProjectDropdownOpen)}
+										className="text-[#ff4300] text-xl font-light hover:underline transition flex items-center gap-1"
+									>
+										{t(link.label)}
+										<svg 
+											className={`w-4 h-4 transition-transform duration-200 ${isProjectDropdownOpen ? 'rotate-180' : ''}`}
+											fill="none" 
+											stroke="currentColor" 
+											viewBox="0 0 24 24"
+										>
+											<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+										</svg>
+									</button>
+									
+									{/* Dropdown Projects */}
+									<AnimatePresence>
+										{isProjectDropdownOpen && (
+											<motion.div
+												className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-48 bg-[#faf6e7] border border-[#ff4300] border-opacity-20 rounded-lg shadow-lg overflow-hidden"
+												initial={{ opacity: 0, y: -10 }}
+												animate={{ opacity: 1, y: 0 }}
+												exit={{ opacity: 0, y: -10 }}
+												transition={{ duration: 0.2 }}
+											>
+												<div className="py-2">
+													{projects.map((project) => (
+														<a
+															key={project.slug}
+															href={`/project/${project.slug}`}
+															className="block px-4 py-2 text-[#ff4300] hover:bg-[#ff4300] hover:bg-opacity-10 transition-colors duration-150"
+															onClick={() => setIsProjectDropdownOpen(false)}
+														>
+															{project.title}
+														</a>
+													))}
+												</div>
+											</motion.div>
+										)}
+									</AnimatePresence>
+								</>
+							) : (
+								<a
+									href={link.href}
+									className="text-[#ff4300] text-xl font-light hover:underline transition"
+								>
+									{t(link.label)}
+								</a>
+							)}
 						</li>
 					))}
 				</ul>
 				
 				{/* Bouton hamburger mobile */}
 				<button
-					onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+					onClick={() => {
+						setIsMobileMenuOpen(!isMobileMenuOpen);
+						if (isMobileMenuOpen) setIsProjectDropdownOpen(false);
+					}}
 					className="md:hidden p-2 text-[#ff4300] hover:bg-[#ff4300] hover:bg-opacity-10 rounded-md transition-colors duration-200"
 					aria-label="Menu"
 					aria-expanded={isMobileMenuOpen}
@@ -117,7 +182,10 @@ const Navbar = () => {
 						{/* Backdrop animé */}
 						<motion.div 
 							className="fixed inset-0  bg-opacity-20 z-40 md:hidden"
-							onClick={() => setIsMobileMenuOpen(false)}
+							onClick={() => {
+								setIsMobileMenuOpen(false);
+								setIsProjectDropdownOpen(false);
+							}}
 							initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}
 							exit={{ opacity: 0 }}
@@ -141,7 +209,10 @@ const Navbar = () => {
 							<div className="flex items-center justify-between p-6 border-b border-[#ff4300] border-opacity-20">
 								<img src={Logo} alt="Logo" className="h-10 w-auto" />
 								<button
-									onClick={() => setIsMobileMenuOpen(false)}
+									onClick={() => {
+										setIsMobileMenuOpen(false);
+										setIsProjectDropdownOpen(false);
+									}}
 									className="p-2 text-[#ff4300] hover:bg-[#ff4300] hover:bg-opacity-10 rounded-md transition-colors duration-200"
 									aria-label="Fermer le menu"
 								>
@@ -166,13 +237,56 @@ const Navbar = () => {
 												stiffness: 300
 											}}
 										>
-											<a
-												href={link.href}
-												onClick={handleMobileLinkClick}
-												className="block text-[#ff4300] text-2xl font-light hover:text-[#ff5722] transition-colors duration-200 py-2"
-											>
-												{t(link.label)}
-											</a>
+											{link.hasDropdown ? (
+												<>
+													<button
+														onClick={() => setIsProjectDropdownOpen(!isProjectDropdownOpen)}
+														className="block text-[#ff4300] text-2xl font-light hover:text-[#ff5722] transition-colors duration-200 py-2 flex items-center gap-2 w-full text-left"
+													>
+														{t(link.label)}
+														<svg 
+															className={`w-5 h-5 transition-transform duration-200 ${isProjectDropdownOpen ? 'rotate-180' : ''}`}
+															fill="none" 
+															stroke="currentColor" 
+															viewBox="0 0 24 24"
+														>
+															<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+														</svg>
+													</button>
+													
+													{/* Sous-menu Projects */}
+													<AnimatePresence>
+														{isProjectDropdownOpen && (
+															<motion.div
+																className="mt-2 ml-4 space-y-2"
+																initial={{ opacity: 0, height: 0 }}
+																animate={{ opacity: 1, height: "auto" }}
+																exit={{ opacity: 0, height: 0 }}
+																transition={{ duration: 0.2 }}
+															>
+																{projects.map((project) => (
+																	<a
+																		key={project.slug}
+																		href={`/project/${project.slug}`}
+																		className="block text-[#ff4300] text-lg font-light hover:text-[#ff5722] transition-colors duration-200 py-1 opacity-80"
+																		onClick={handleMobileLinkClick}
+																	>
+																		{project.title}
+																	</a>
+																))}
+															</motion.div>
+														)}
+													</AnimatePresence>
+												</>
+											) : (
+												<a
+													href={link.href}
+													onClick={handleMobileLinkClick}
+													className="block text-[#ff4300] text-2xl font-light hover:text-[#ff5722] transition-colors duration-200 py-2"
+												>
+													{t(link.label)}
+												</a>
+											)}
 										</motion.li>
 									))}
 								</ul>
