@@ -33,11 +33,10 @@ function App() {
   // Détection de la largeur d'écran
   const [showSmallScreenError, setShowSmallScreenError] = useState(window.innerWidth < 800);
 
-  useEffect(() => {
-    if (!loading) return;
-    const timer = setTimeout(() => setLoading(false), 3000);
-    return () => clearTimeout(timer);
-  }, [loading]);
+  // Callback pour que le Loader puisse signaler qu'il a terminé
+  const handleLoaderComplete = () => {
+    setLoading(false);
+  };
 
   // Écouter les changements de taille d'écran
   useEffect(() => {
@@ -69,7 +68,7 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (loading) return <Loader />;
+  if (loading) return <Loader onComplete={handleLoaderComplete} />;
   
   // Afficher l'écran d'erreur si l'écran est trop petit
   if (showSmallScreenError) return <SmallScreenError />;
