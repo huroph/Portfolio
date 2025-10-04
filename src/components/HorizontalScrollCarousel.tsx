@@ -1,6 +1,6 @@
-import trueTourism from '../assets/trueTourism.png';
-import BambouTech from '../assets/BambouTech.png';
-import EOLE from '../assets/EOLE.png';
+import trueTourism from '../assets/trueTourism.webp';
+import BambouTech from '../assets/BambouTech.webp';
+import EOLE from '../assets/EOLE.webp';
 import { motion, useTransform, useScroll } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -108,6 +108,7 @@ const Card = ({ card }: { card: { id: number; img: string; alt: string } }) => {
           <img
             src={card.img}
             alt={card.alt}
+            loading="lazy"
             className={
               (isEOLE
                 ? " w-[650px] h-[480px] "

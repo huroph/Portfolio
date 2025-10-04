@@ -45,8 +45,9 @@ const MockupTrueTourism1 = () => {
             {/* Premier iPhone */}
             <div className="relative transform rotate-[-8deg] translate-y-35">
                     <img 
-                      src={Ecran1} 
-                      alt="TrueTourism App Screen 1" 
+                      loading="lazy"
+                      src={Ecran1}
+                      alt="TrueTourism App Screen 1"
                       className=" "
                     />
             </div>
@@ -58,6 +59,7 @@ const MockupTrueTourism1 = () => {
                
                     {/* Screen Content */}
                     <img 
+                      loading="lazy"
                       src={Ecran2} 
                       alt="TrueTourism App Screen 2" 
                       className="w-full h-full object-cover"

@@ -217,6 +217,7 @@ const ProjectPage = () => {
                     <section className="w-full flex flex-col items-center justify-center py-16 bg-[#faf6e7] px-8 md:px-32 gap-8">
                         <div className="w-full flex justify-center">
                             <img
+                                loading="lazy"
                                 src={currentMockups.mockup1}
                                 alt={`Mockup 1 du projet ${projectData?.title}`}
                                 className="w-2/3 h-auto"
@@ -224,6 +225,7 @@ const ProjectPage = () => {
                         </div>
                         <div className="w-full flex justify-center">
                             <img
+                                loading="lazy"
                                 src={currentMockups.mockup2}
                                 alt={`Mockup 2 du projet ${projectData?.title}`}
                                 className="w-2/3 h-auto"

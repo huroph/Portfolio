@@ -51,6 +51,7 @@ const MockupBambouTech1 = () => {
                       src={Ecran1} 
                       alt="TrueTourism App Screen 1" 
                       className=" "
+                      loading="lazy"
                     />
             </div>
                 </div>
@@ -62,10 +63,12 @@ const MockupBambouTech1 = () => {
                   <div className="relative">
                 {/* iPhone Frame */}
                 <div className="w-[300px] h-[600px] ">
+
                     <img 
                       src={Ecran2} 
                       alt="TrueTourism App Screen 2" 
                       className="w-full h-full object-cover"
+                      loading="lazy"
                     />
                 </div>
                 </div>

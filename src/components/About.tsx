@@ -1,4 +1,4 @@
-import profil from '../assets/profil.png';
+import profil from '../assets/profil.webp';
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useRef } from "react";
 import { useTranslation } from 'react-i18next';
