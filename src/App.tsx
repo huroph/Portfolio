@@ -76,14 +76,14 @@ function App() {
   return (
     <I18nextProvider i18n={i18n}>
       <div className="relative w-full min-h-screen bg-[#faf6e7]">
-        {/* Contact en fond, toujours présent */}
+        {/* Navbar en dehors du main pour éviter les conflits pointer-events */}
+        <Navbar />
         
         {/* Contenu principal scrollable, effet rideau natif */}
         <main
           className="relative z-10 min-h-screen bg-transparent"
           style={{ pointerEvents: mainPointerEvents }}
         >
-          <Navbar />
           <MouseTrail />
           <HorizontalScrollText />
           <div id="about">
@@ -100,8 +100,6 @@ function App() {
             <a className="scroll-down-btn"> <span></span></a>
           </section>
         </main>
-        
-        {/* Footer en dehors du main pour éviter les conflits pointer-events */}
         
         {/* Vercel Analytics */}
         <Analytics />

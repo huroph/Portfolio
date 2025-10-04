@@ -130,14 +130,14 @@ const Navbar = () => {
 						setIsMobileMenuOpen(!isMobileMenuOpen);
 						if (isMobileMenuOpen) setIsProjectDropdownOpen(false);
 					}}
-					className="md:hidden p-2 text-[#ff4300] hover:bg-[#ff4300] hover:bg-opacity-10 rounded-md transition-colors duration-200"
+					className="md:hidden p-2 text-[#ff4300] hover:bg-[#ff4300] hover:text-white rounded-md transition-colors duration-200 z-50"
 					aria-label="Menu"
 					aria-expanded={isMobileMenuOpen}
 				>
 					<svg 
 						className="w-6 h-6" 
 						fill="none" 
-						stroke="currentColor" 
+						stroke="currentColor " 
 						viewBox="0 0 24 24"
 					>
 						{isMobileMenuOpen ? (
