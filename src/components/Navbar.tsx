@@ -16,7 +16,6 @@ const Navbar = () => {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const [isProjectDropdownOpen, setIsProjectDropdownOpen] = useState(false);
 	const lastScroll = useRef(0);
-	const dropdownRef = useRef<HTMLLIElement>(null);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -30,18 +29,6 @@ const Navbar = () => {
 		};
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
-	}, []);
-
-	// Fermer le dropdown quand on clique ailleurs
-	useEffect(() => {
-		const handleClickOutside = (event: MouseEvent) => {
-			if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-				setIsProjectDropdownOpen(false);
-			}
-		};
-
-		document.addEventListener('mousedown', handleClickOutside);
-		return () => document.removeEventListener('mousedown', handleClickOutside);
 	}, []);
 
 	// Fermer le menu mobile quand on clique sur un lien
@@ -79,7 +66,7 @@ const Navbar = () => {
 				{/* Navigation desktop */}
 				<ul className="hidden md:flex flex-1 justify-center gap-24">
 					{navLinks.map((link) => (
-						<li key={link.href} className="relative" ref={link.hasDropdown ? dropdownRef : undefined}>
+						<li key={link.href} className="relative">
 							{link.hasDropdown ? (
 								<>
 									{/* Lien Projects avec dropdown */}
