@@ -17,6 +17,7 @@ const Navbar = () => {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const [isProjectDropdownOpen, setIsProjectDropdownOpen] = useState(false);
 	const lastScroll = useRef(0);
+	const dropdownRef = useRef<HTMLLIElement>(null);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -27,9 +28,26 @@ const Navbar = () => {
 				setShow(true); // scroll up
 			}
 			lastScroll.current = current;
+			
+			// Fermer le dropdown lors du scroll
+			if (isProjectDropdownOpen) {
+				setIsProjectDropdownOpen(false);
+			}
 		};
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
+	}, [isProjectDropdownOpen]);
+
+	// Fermer le dropdown quand on clique ailleurs
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+				setIsProjectDropdownOpen(false);
+			}
+		};
+
+		document.addEventListener('mousedown', handleClickOutside);
+		return () => document.removeEventListener('mousedown', handleClickOutside);
 	}, []);
 
 	// Fermer le menu mobile quand on clique sur un lien
@@ -67,7 +85,7 @@ const Navbar = () => {
 				{/* Navigation desktop */}
 				<ul className="hidden md:flex flex-1 justify-center gap-24">
 					{navLinks.map((link) => (
-						<li key={link.href} className="relative">
+						<li key={link.href} className="relative" ref={link.hasDropdown ? dropdownRef : null}>
 							{link.hasDropdown ? (
 								<>
 									{/* Lien Projects avec dropdown */}
@@ -96,12 +114,22 @@ const Navbar = () => {
 												exit={{ opacity: 0, y: -10 }}
 												transition={{ duration: 0.2 }}
 											>
-												<div className="py-2">
+												<div className="py-0">
+													{/* Lien "Tous les projets" */}
+													<a
+														href="#projects"
+														className="block px-4 py-2 text-[#ff4300] hover:bg-[#ff4300]/10 transition-colors duration-150 font-medium border-b border-[#ff4300] border-opacity-10"
+														onClick={() => setIsProjectDropdownOpen(false)}
+													>
+														{t('all_projects')}
+													</a>
+													
+													{/* Liste des projets individuels */}
 													{projects.map((project) => (
 														<Link
 															key={project.slug}
 															to={`/project/${project.slug}`}
-															className="block px-4 py-2 text-[#ff4300] hover:bg-[#ff4300] hover:bg-opacity-10 transition-colors duration-150"
+															className="block px-4 py-2 text-[#ff4300] hover:bg-[#ff4300]/10 transition-colors duration-150"
 															onClick={() => setIsProjectDropdownOpen(false)}
 														>
 															{project.title}
@@ -201,7 +229,7 @@ const Navbar = () => {
 										setIsMobileMenuOpen(false);
 										setIsProjectDropdownOpen(false);
 									}}
-									className="p-2 text-[#ff4300] hover:bg-[#ff4300] hover:bg-opacity-10 rounded-md transition-colors duration-200"
+									className="p-2 text-[#ff4300] hover:bg-[#ff4300]/10 rounded-md transition-colors duration-200"
 									aria-label="Fermer le menu"
 								>
 									<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -252,6 +280,16 @@ const Navbar = () => {
 																exit={{ opacity: 0, height: 0 }}
 																transition={{ duration: 0.2 }}
 															>
+																{/* Lien "Tous les projets" en mobile */}
+																<a
+																	href="#projects"
+																	className="block text-[#ff4300] text-lg font-medium hover:text-[#ff5722] transition-colors duration-200 py-1 opacity-90 border-b border-[#ff4300] border-opacity-10 mb-1"
+																	onClick={handleMobileLinkClick}
+																>
+																	{t('all_projects')}
+																</a>
+																
+																{/* Liste des projets individuels en mobile */}
 																{projects.map((project) => (
 																	<Link
 																		key={project.slug}
