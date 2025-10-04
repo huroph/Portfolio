@@ -100,41 +100,45 @@ const Card = ({ card }: { card: { id: number; img: string; alt: string } }) => {
   }, []);
 
   return (
-    <div ref={cardRef} className={`group relative cursor-pointer ${isEOLE ? 'w-[700px]' : 'w-[250px]'}`} onClick={handleClick}>
+    <div ref={cardRef} className={`group relative cursor-pointer ${isEOLE ? 'w-[600px]' : 'w-[250px]'}`} onClick={handleClick}>
       {/* Container principal avec effet de hover */}
       <div className="relative ">
         {/* Image */}
-        <div className="relative  h-[500px] justify-center align-center flex">
+        <div className={`relative h-[500px] justify-center align-center flex ${isEOLE ? 'w-full' : ''}`}>
           <img
             src={card.img}
             alt={card.alt}
             loading="lazy"
             className={
               (isEOLE
-                ? " w-[650px] h-[480px] "
-                : " mx-30") +
-              " transition duration-300 group-hover:scale-105"
+                ? "w-full h-full object-cover  "
+                : "") +
+              " transition duration-300 " +
+              (isInZone ? "scale-105" : "")
             }
-            style={isEOLE ? { objectFit: "contain" } : {}}
+           
           />
+        </div>
 
-          {/* Section info en bas - visible dans la zone OU au hover */}
-          <div className={`absolute bottom-0 mt-[100px] left-0 right-0 bg-gradient-to-b from-transparent to-[#faf6e770] h-[200px] flex items-end justify-center  transition-opacity duration-300 ${
-            isInZone || false ? 'opacity-100' : 'opacity-0'
-          } group-hover:opacity-100`}>
-            <div className="flex flex-col items-center translate-y-24 mb-4">
-              <h3 className="text-xl font-bold text-[#ff4300] mb-3">
-                {card.alt}
-              </h3>
-              {/* Bouton En savoir plus */}
-              <div className="bg-[#ff4300] text-white px-4 cursor-pointer py-2 rounded-full text-sm font-medium hover:bg-[#ff5722] transition-colors duration-200">
-                En savoir plus
-              </div>
+        {/* Section info en bas - SORTIE du container image pour être relative au container principal */}
+                </div>
+
+        {/* Section info en bas - positionnée par rapport au container principal */}
+        <div className={`absolute bottom-0 left-0 right-0 w-full  h-[200px] flex items-end justify-center transition-opacity duration-300 ${
+          isInZone || false ? 'opacity-100' : 'opacity-0'
+        } group-hover:opacity-100`}>
+          <div className="flex flex-col items-center translate-y-24 mb-4">
+            <h3 className="text-xl font-bold text-[#ff4300] mb-3">
+              {card.alt}
+            </h3>
+            {/* Bouton En savoir plus */}
+            <div className="bg-[#ff4300] text-white px-4 cursor-pointer py-2 rounded-full text-sm font-medium hover:bg-[#ff5722] transition-colors duration-200">
+              En savoir plus
             </div>
           </div>
         </div>
       </div>
-    </div>
+
   );
 };
 
