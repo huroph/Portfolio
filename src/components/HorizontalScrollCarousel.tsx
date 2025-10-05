@@ -57,6 +57,21 @@ const Card = ({ card }: { card: { id: number; img: string; alt: string; type: 'm
   const navigate = useNavigate();
   const cardRef = useRef<HTMLDivElement>(null);
   const [isInZone, setIsInZone] = useState(false);
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
+
+  // Détecter si on est sur un appareil mobile
+  useEffect(() => {
+    const checkMobileDevice = () => {
+      setIsMobileDevice(window.innerWidth <= 768);
+    };
+
+    checkMobileDevice();
+    window.addEventListener('resize', checkMobileDevice);
+
+    return () => {
+      window.removeEventListener('resize', checkMobileDevice);
+    };
+  }, []);
 
   const handleClick = () => {
     navigate(`/project/${card.alt}`);
@@ -103,7 +118,7 @@ const Card = ({ card }: { card: { id: number; img: string; alt: string; type: 'm
   }, []);
 
   return (
-    <div ref={cardRef} className={`group relative cursor-pointer z-10 ${isEOLE ? 'w-[480px]' : ''}`} onClick={handleClick}>
+    <div ref={cardRef} className={`group relative cursor-pointer z-10 ${isEOLE ? 'w-[480px]' : ''} ${isMobileDevice ? 'scale-[0.8]' : ''}`} onClick={handleClick}>
       {/* Container principal avec effet de hover */}
       <div className="relative z-20">
         {/* Image */}
