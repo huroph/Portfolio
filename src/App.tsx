@@ -85,7 +85,10 @@ function App() {
           style={{ pointerEvents: mainPointerEvents }}
         >
           <MouseTrail />
-          <HorizontalScrollText />
+          <div id="home" className=''>
+   <HorizontalScrollText />
+          </div>
+          
           <div id="about">
             <About />
           </div>

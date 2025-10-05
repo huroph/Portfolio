@@ -1,10 +1,11 @@
-import trueTourism from '../assets/trueTourism.webp';
-import BambouTech from '../assets/BambouTech.webp';
+import trueTourism from '../assets/truetourism/Mockup_Map.png';
+import BambouTech from '../assets/BambouTech/Mockup_HomePage.png';
 import EOLE from '../assets/EOLE.webp';
 import { motion, useTransform, useScroll } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { t } from 'i18next';
+import FrameIphone from './frame_iphone';
 
 
 const HorizontalScrollCarousel = () => {
@@ -13,7 +14,7 @@ const HorizontalScrollCarousel = () => {
     target: targetRef,
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["50%", "-100%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["90%", "-90%"]);
 
   // Définir les cartes projets
   const cards = [
@@ -24,16 +25,16 @@ const HorizontalScrollCarousel = () => {
 
   return (
     <section ref={targetRef} className="relative h-[300vh] bg-[#faf6e7] ">
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+      <div className="sticky top-0 flex h-screen items-center overflow-hidden ">
         <div className="absolute h-screen w-full flex items-center justify-center">
           <h1 className="text-[20vw] font-bold text-[#ff4300] text-center leading-tight mb-8">
             {t('project').toUpperCase()}
           </h1>
         </div>
-        
+
         {/* Zone de détection au centre de l'écran */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div 
+          <div
             id="detection-zone"
             className="w-[10px] h-[600px] hidden"
           />
@@ -67,10 +68,10 @@ const Card = ({ card }: { card: { id: number; img: string; alt: string } }) => {
       const cardRect = cardRef.current.getBoundingClientRect();
       const screenCenterX = window.innerWidth / 2;
       const screenCenterY = window.innerHeight / 2;
-      
+
       // Zone de détection au centre (400px width, 600px height)
-      const zoneLeft = screenCenterX - 90 ;
-      const zoneRight = screenCenterX + 90 ;
+      const zoneLeft = screenCenterX - 90;
+      const zoneRight = screenCenterX + 90;
       const zoneTop = screenCenterY - 300;
       const zoneBottom = screenCenterY + 300;
 
@@ -79,10 +80,10 @@ const Card = ({ card }: { card: { id: number; img: string; alt: string } }) => {
       console.log('Screen Center:', { screenCenterX, screenCenterY });
 
       // Vérifier si la carte est dans la zone
-      const inZone = cardRect.left < zoneRight && 
-                    cardRect.right > zoneLeft && 
-                    cardRect.top < zoneBottom && 
-                    cardRect.bottom > zoneTop;
+      const inZone = cardRect.left < zoneRight &&
+        cardRect.right > zoneLeft &&
+        cardRect.top < zoneBottom &&
+        cardRect.bottom > zoneTop;
 
       setIsInZone(inZone);
     };
@@ -100,44 +101,86 @@ const Card = ({ card }: { card: { id: number; img: string; alt: string } }) => {
   }, []);
 
   return (
-    <div ref={cardRef} className={`group relative cursor-pointer ${isEOLE ? 'w-[600px]' : 'w-[250px]'}`} onClick={handleClick}>
+    <div ref={cardRef} className={`group relative cursor-pointer z-10 ${isEOLE ? 'w-[600px]' : ''}`} onClick={handleClick}>
       {/* Container principal avec effet de hover */}
-      <div className="relative ">
+      <div className="relative z-20">
         {/* Image */}
-        <div className={`relative h-[500px] justify-center align-center flex ${isEOLE ? 'w-full' : ''}`}>
-          <img
-            src={card.img}
-            alt={card.alt}
-            loading="lazy"
-            className={
-              (isEOLE
-                ? "w-full h-full object-cover  "
-                : "") +
-              " transition duration-300 " +
-              (isInZone ? "scale-105" : "")
-            }
-           
-          />
-        </div>
+        <motion.div
+          animate={{
+            y: isInZone ? -30 : 0
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 300,
+            damping: 20
+          }}
+        >
+          <FrameIphone>
+            <img
+              src={card.img}
+              alt={card.alt}
+              loading="lazy"
+              className={
+                (isEOLE
+                  ? "w-full h-full object-cover  "
+                  : "") +
+                " transition duration-300 " 
+                
+              }
 
-        {/* Section info en bas - SORTIE du container image pour être relative au container principal */}
-                </div>
+            />
+          </FrameIphone>
+        </motion.div>
 
-        {/* Section info en bas - positionnée par rapport au container principal */}
-        <div className={`absolute bottom-0 left-0 right-0 w-full  h-[200px] flex items-end justify-center transition-opacity duration-300 ${
-          isInZone || false ? 'opacity-100' : 'opacity-0'
-        } group-hover:opacity-100`}>
-          <div className="flex flex-col items-center translate-y-24 mb-4">
-            <h3 className="text-xl font-bold text-[#ff4300] mb-3">
-              {card.alt}
-            </h3>
-            {/* Bouton En savoir plus */}
-            <div className="bg-[#ff4300] text-white px-4 cursor-pointer py-2 rounded-full text-sm font-medium hover:bg-[#ff5722] transition-colors duration-200">
-              En savoir plus
-            </div>
-          </div>
-        </div>
+
       </div>
+
+      {/* Section info en bas - positionnée par rapport au container principal */}
+      <motion.div 
+        className="absolute bottom-0 left-0 right-0 w-full h-[200px] flex items-end justify-center z-10"
+        animate={{
+          opacity: isInZone ? 1 : 0,
+          y: isInZone ? 40 : -60
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 200,
+          damping: 25,
+          opacity: { duration: 0.3 }
+        }}
+      >
+        <motion.div 
+          className="flex flex-col items-center mb-4"
+          animate={{
+            y: isInZone ? 40 : -48
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 250,
+            damping: 20
+          }}
+        >
+          <h3 className="text-3xl font-light text-[#ff4300] mb-3">
+            {card.alt}
+          </h3>
+          {/* Bouton En savoir plus */}
+          <motion.div 
+            className="bg-[#ff4300] text-white px-4 cursor-pointer py-2 rounded-full text-sm font-medium"
+            whileHover={{ 
+              backgroundColor: "#ff5722",
+              scale: 1.05
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 400,
+              damping: 20
+            }}
+          >
+            En savoir plus
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </div>
 
   );
 };
