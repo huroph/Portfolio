@@ -1,5 +1,6 @@
 export type ProjectData = {
   slug: string;
+  type: 'mobile' | 'web';
   title: string;
   title_en?: string;
   year: string;
@@ -13,6 +14,7 @@ export type ProjectData = {
 export const projects: ProjectData[] = [
   {
     slug: 'TrueTourism',
+    type:'mobile',
     title: 'TrueTourism',
     title_en: 'TrueTourism',
     year: '2023 - 2024',
@@ -24,6 +26,7 @@ export const projects: ProjectData[] = [
   },
    {
     slug: 'BambouTech',
+    type:'mobile',
     title: 'BambouTech',
     title_en: 'BambouTech',
     year: '2021 - 2022',
@@ -37,6 +40,7 @@ images: [], // tu peux ajouter le proto masque ou visuels AR/VR
   },
  {
   slug: 'EOLE',
+  type:'web',
   title: 'EOLE',
   title_en: 'EOLE',
   year: '2024',

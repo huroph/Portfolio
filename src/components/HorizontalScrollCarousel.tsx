@@ -1,11 +1,12 @@
 import trueTourism from '../assets/truetourism/Mockup_Map.png';
 import BambouTech from '../assets/BambouTech/Mockup_HomePage.png';
-import EOLE from '../assets/EOLE.webp';
+import EOLE from '../assets/Eole/Mockup_HomePage.png';
 import { motion, useTransform, useScroll } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { t } from 'i18next';
 import FrameIphone from './frame_iphone';
+import FrameMac from './frame_mac';
 
 
 const HorizontalScrollCarousel = () => {
@@ -18,9 +19,9 @@ const HorizontalScrollCarousel = () => {
 
   // Définir les cartes projets
   const cards = [
-    { id: 1, img: trueTourism, alt: "TrueTourism" },
-    { id: 2, img: BambouTech, alt: "BambouTech" },
-    { id: 3, img: EOLE, alt: "EOLE" },
+    { id: 1, img: trueTourism, alt: "TrueTourism", type: "mobile" as const },
+    { id: 2, img: BambouTech, alt: "BambouTech", type: "mobile" as const },
+    { id: 3, img: EOLE, alt: "EOLE", type: "web" as const },
   ];
 
   return (
@@ -50,8 +51,9 @@ const HorizontalScrollCarousel = () => {
   );
 };
 
-const Card = ({ card }: { card: { id: number; img: string; alt: string } }) => {
+const Card = ({ card }: { card: { id: number; img: string; alt: string; type: 'mobile' | 'web' } }) => {
   const isEOLE = card.alt === "EOLE";
+  const isMobile = card.type === "mobile";
   const navigate = useNavigate();
   const cardRef = useRef<HTMLDivElement>(null);
   const [isInZone, setIsInZone] = useState(false);
@@ -101,7 +103,7 @@ const Card = ({ card }: { card: { id: number; img: string; alt: string } }) => {
   }, []);
 
   return (
-    <div ref={cardRef} className={`group relative cursor-pointer z-10 ${isEOLE ? 'w-[600px]' : ''}`} onClick={handleClick}>
+    <div ref={cardRef} className={`group relative cursor-pointer z-10 ${isEOLE ? 'w-[480px]' : ''}`} onClick={handleClick}>
       {/* Container principal avec effet de hover */}
       <div className="relative z-20">
         {/* Image */}
@@ -115,21 +117,31 @@ const Card = ({ card }: { card: { id: number; img: string; alt: string } }) => {
             damping: 20
           }}
         >
-          <FrameIphone>
-            <img
-              src={card.img}
-              alt={card.alt}
-              loading="lazy"
-              className={
-                (isEOLE
-                  ? "w-full h-full object-cover  "
-                  : "") +
-                " transition duration-300 " 
-                
-              }
-
-            />
-          </FrameIphone>
+          {isMobile ? (
+            <FrameIphone>
+              <img
+                src={card.img}
+                alt={card.alt}
+                loading="lazy"
+                className={
+                  (isEOLE
+                    ? "w-full h-full object-cover  "
+                    : "") +
+                  " transition duration-300 " 
+                  
+                }
+              />
+            </FrameIphone>
+          ) : (
+            <FrameMac>
+              <img
+                src={card.img}
+                alt={card.alt}
+                loading="lazy"
+                className="w-full h-full object-cover transition duration-300"
+              />
+            </FrameMac>
+          )}
         </motion.div>
 
 
