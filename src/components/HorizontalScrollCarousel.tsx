@@ -1,6 +1,6 @@
-import trueTourism from '../assets/truetourism/Mockup_Map.png';
-import BambouTech from '../assets/BambouTech/Mockup_HomePage.png';
-import EOLE from '../assets/Eole/Mockup_HomePage.png';
+import trueTourism from '../assets/truetourism/Mockup_Map.webp';
+import BambouTech from '../assets/BambouTech/Mockup_Homepage.webp';
+import EOLE from '../assets/Eole/Mockup_Homepage.webp';
 import { motion, useTransform, useScroll } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +15,26 @@ const HorizontalScrollCarousel = () => {
     target: targetRef,
   });
 
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
+
   const x = useTransform(scrollYProgress, [0, 1], ["90%", "-90%"]);
+  const xmobile = useTransform(scrollYProgress, [0, 1], ["30%", "-90%"]);
+
+  useEffect(() => {
+    const checkMobileDevice = () => {
+      setIsMobileDevice(window.innerWidth <= 768);
+    };
+
+    checkMobileDevice();
+    window.addEventListener('resize', checkMobileDevice);
+
+    return () => {
+      window.removeEventListener('resize', checkMobileDevice);
+    };
+  }, []);
+
+
+
 
   // Définir les cartes projets
   const cards = [
@@ -41,7 +60,7 @@ const HorizontalScrollCarousel = () => {
           />
         </div>
 
-        <motion.div style={{ x }} className="flex gap-[200px] items-center z-20 ">
+        <motion.div style={{ x: isMobileDevice ? xmobile : x }} className="flex gap-[200px] items-center z-20 ">
           {cards.map((card) => (
             <Card card={card} key={card.id} />
           ))}
