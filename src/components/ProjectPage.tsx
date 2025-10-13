@@ -20,6 +20,7 @@ import MockupBambouTech2 from './mockup/bamboutech/Mockup_2';
 import transTrueTourism from '../assets/truetourism/transTruetourism.webp';
 import transBambouTech from '../assets/BambouTech/transBambouTech.webp';
 import transEole from '../assets/Eole/transEole.webp';
+import PressText from './PressText';
 
 const ProjectPage = () => {
 
@@ -138,7 +139,7 @@ const ProjectPage = () => {
 
             {/* Contenu principal scrollable, effet rideau natif */}
             <main
-                className="relative z-10 min-h-screen flex flex-col  items-center justify-center"
+                className="relative z-10 min-h-screen flex flex-col  items-center justify-center "
             >
                 {/* Titre projet pleine hauteur */}
                 <div className="flex flex-col items-center justify-end h-screen bg-[#faf6e7] px-8 ">
@@ -234,13 +235,9 @@ const ProjectPage = () => {
                 )}
                 {/* Section projet suivant */}
                 <div className="relative h-[200vh] ">
-                    <section className="w-full h-screen flex flex-col items-center py-24 bg-[#faf6e7] sticky top-0">
-                        <div className="w-full flex flex-col items-center gap-8">
-                            <div className='h-150 w-full justify-center flex items-end sticky'>
-                                <div className="uppercase text-[#ff4300] font-extralight text-[20vw] text-center mb-6">{t('next_project_title')}</div>
-                            </div>
-                        </div>
-                    </section>
+                    <section className="w-full h-screen flex flex-col items-center justify-center py-24  bg-[#faf6e7] sticky top-0">
+    <PressText text={t('next_project_title')} className="text-[#ff4300] font-bold text-[12vw] text-center uppercase" />
+</section>
 
                     <section className="w-full flex flex-col items-center gap-8 justify-center px-8">
                         <div className="flex justify-center w-full h-screen">
@@ -257,7 +254,6 @@ const ProjectPage = () => {
                                 />
                                 {/* Titre du projet suivant */}
                                 <div className="text-center">
-                                   
                                     <p className="text-[#ff4300] opacity-70">{t('click_to_view')}</p>
                                 </div>
                             </button>

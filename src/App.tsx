@@ -86,7 +86,7 @@ function App() {
         >
           <MouseTrail />
           <div id="home" className=''>
-   <HorizontalScrollText />
+           <HorizontalScrollText />
           </div>
           
           <div id="about">
